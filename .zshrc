@@ -50,7 +50,7 @@ PROMPT="%{${fg[blue]}%}%~%{${blue}%}
 
 ### aliases
 
-## aliases for Docker
+# aliases for Docker
 alias "docker-run"="/Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
 
 ## aliases for editors
@@ -67,6 +67,7 @@ alias hs="python -m http.server"
 alias l="ls"
 alias ll="ls -l"
 alias la="ls -a"
+alias m="make"
 
 ## Run `ls` and `git status` when user input only <ENTER>
 function do_enter() {
