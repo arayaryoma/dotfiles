@@ -50,6 +50,7 @@ PROMPT="%{${fg[blue]}%}%~%{${blue}%}
 
 ### aliases
 
+## aliases for Docker
 alias "docker-run"="/Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
 
 ## aliases for editors
@@ -78,7 +79,7 @@ function do_enter() {
    if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
         echo
         echo -e "\e[0;33m--- git status ---\e[0m"
-        git status -sb
+        git status
     fi
     zle reset-prompt
     return 0
