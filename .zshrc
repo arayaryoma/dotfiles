@@ -17,6 +17,8 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 ### Key bindings
 bindkey '^e' forward-word  # [Ctrl-RightArrow] - move forward one word
 bindkey '^w' backward-word # [Ctrl-LeftArrow] - move backward one word
+bindkey '^p' up-line-or-search
+bindkey '^n' down-line-or-search
 
 ### Visual settings
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
