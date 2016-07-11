@@ -15,10 +15,13 @@ eval "$(direnv hook zsh)"
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 ### Key bindings
-bindkey '^e' forward-word  # [Ctrl-RightArrow] - move forward one word
-bindkey '^w' backward-word # [Ctrl-LeftArrow] - move backward one word
+bindkey '^e' forward-word
+bindkey '^f' forward-word
+bindkey '^w' backward-word
 bindkey '^p' up-line-or-search
 bindkey '^n' down-line-or-search
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
 
 ### Visual settings
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
@@ -76,6 +79,12 @@ alias l="ls"
 alias ll="ls -l"
 alias la="ls -a"
 alias m="make"
+function asp {
+  export AWS_DEFAULT_PROFILE=$1
+  export AWS_PROFILE=$1
+  echo "AWS_DEFAULT_PROFILE=$AWS_DEFAULT_PROFILE"
+  echo "AWS_PROFILE=$AWS_PROFILE"
+}
 
 ## Run `ls` and `git status` when user input only <ENTER>
 function do_enter() {
