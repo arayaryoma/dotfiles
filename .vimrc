@@ -63,6 +63,7 @@ call dein#add('Shougo/neosnippet-snippets')
 call dein#add('rizzatti/dash.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('mattn/emmet-vim')
+call dein#add('leafgarland/typescript-vim')
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
