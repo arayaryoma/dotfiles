@@ -31,7 +31,7 @@ nnoremap <C-m> :cN<CR>
 """ Aliases in insert mode
 inoremap uu <Esc>
 inoremap jj <Esc> 
-
+inoremap <C-n> <C-x><C-o>
 
 """ autocompletions
 inoremap { {}<Left>
@@ -60,10 +60,13 @@ call dein#add('Shougo/dein.vim')
 " Add or remove your plugins here:
 call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
+call dein#add('Shougo/neocomplete')
+call dein#add('scrooloose/syntastic')
 call dein#add('rizzatti/dash.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('mattn/emmet-vim')
 call dein#add('leafgarland/typescript-vim')
+call dein#add('fatih/vim-go')
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
@@ -89,3 +92,15 @@ setlocal autoindent
 let NERDTreeShowHidden=1
 
 " End of NERD Tree configure -------------------------
+
+" go-vim configure--------------------
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
+autocmd FileType go :highlight goErr cterm=bold ctermfg=214
+autocmd FileType go :match goErr /\<err\>/
+" End of go-vim configure--------------------
