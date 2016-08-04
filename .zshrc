@@ -85,6 +85,9 @@ function asp {
   echo "AWS_DEFAULT_PROFILE=$AWS_DEFAULT_PROFILE"
   echo "AWS_PROFILE=$AWS_PROFILE"
 }
+function lo {
+    open "http://localhost:$1"
+}
 
 ## Run `ls` and `git status` when user input only <ENTER>
 function do_enter() {
