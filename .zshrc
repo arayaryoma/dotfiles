@@ -66,7 +66,7 @@ alias "docker-run"="/Applications/Docker/Docker\ Quickstart\ Terminal.app/Conten
 
 ## aliases for editors
 alias rubymine="open -a /Applications/RubyMine.app"
-
+alias webstorm="open -a /Applications/WebStorm.app"
 
 ## aliases for shell
 alias zshrc="vim ~/.zshrc"
