@@ -31,7 +31,7 @@ nnoremap <C-m> :cN<CR>
 """ Aliases in insert mode
 inoremap uu <Esc>
 inoremap jj <Esc> 
-inoremap <C-n> <C-x><C-o>
+inoremap <C-j> <C-x><C-o>
 
 """ autocompletions
 inoremap { {}<Left>
@@ -67,6 +67,10 @@ call dein#add('scrooloose/nerdtree')
 call dein#add('mattn/emmet-vim')
 call dein#add('leafgarland/typescript-vim')
 call dein#add('fatih/vim-go')
+call dein#add('Quramy/vim-js-pretty-template')
+call dein#add('Quramy/tsuquyomi')
+call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+"call dein#add('magarcia/vim-angular2-snippets')
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
@@ -84,9 +88,8 @@ endif
 
 " indent config 
 setlocal expandtab 
-setlocal tabstop=2 shiftwidth=2 softtabstop=2 
+setlocal tabstop=2 shiftwidth=1 softtabstop=1
 setlocal autoindent
-
 " NERD Tree configure-------------------------
 " Show hidden file(i.e. dotfiles)
 let NERDTreeShowHidden=1
@@ -104,3 +107,8 @@ let g:go_fmt_command = "goimports"
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
 " End of go-vim configure--------------------
+
+" Configure of each languages----------------------
+autocmd BufRead, BufNewFile *.ts setfiletype typescript
+autocmd BufRead, BufNewFile *.html setfiletype html
+" End of Configure of each languages----------------------
