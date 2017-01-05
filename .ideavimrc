@@ -19,3 +19,4 @@ inoremap <silent> <C-h> <Del>
 
 " Aliases in insert mode
 inoremap uu <Esc>
+inoremap jj <Esc>
