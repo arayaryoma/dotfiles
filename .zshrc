@@ -1,6 +1,6 @@
 autoload -U compinit
 compinit
-export PATH=$HOME/.nodenv/shims:$HOME/.nodenv/versions/5.1.0/bin:/usr/local/var/pyenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/usr/local/share/git-core/contrib/diff-highlight:/sbin
+export PATH=$HOME/.nodenv/shims:$HOME/.nodenv/versions:/usr/local/var/pyenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/usr/local/share/git-core/contrib/diff-highlight:/sbin
 export PYENV_ROOT="/usr/local/var/pyenv"
 export PATH=$PYENV_ROOT/shims:$PATH
 export GOPATH=$HOME/Workspace/go
@@ -9,6 +9,8 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vim
+export AWS_HOME=$HOME/.aws
+export DYNAMODB_LOCAL_PATH=/Users/Rio/Workspace/dynamodb_local_2016-05-17
 eval "$(direnv hook zsh)"
 
 # match uppercase from lowercarse
@@ -73,12 +75,15 @@ alias zshrc="vim ~/.zshrc"
 alias reload="source ~/.zshrc"
 alias ls="gls --color"
 alias vimrc="vim ~/.vimrc"
-alias t="tmux"
+alias tx="cd ~ && tmux"
 alias hs="python -m http.server"
-alias l="ls"
+alias l="ls -al"
 alias ll="ls -l"
 alias la="ls -a"
 alias m="make"
+function dynamolocal {
+	java -Djava.library.path=$DYNAMODB_LOCAL_PATH -jar $DYNAMODB_LOCAL_PATH/DynamoDBLocal.jar -port 3003
+}
 function asp {
   export AWS_DEFAULT_PROFILE=$1
   export AWS_PROFILE=$1
@@ -121,6 +126,8 @@ alias gpsh="git push"
 alias gash="git stash"
 alias gme="git merge"
 alias gbr="git branch"
+alias grh="git reset HEAD"
+alias glog="git log --oneline --graph --decorate --all"
 
 ###
 
@@ -151,6 +158,9 @@ zstyle ':chpwd:*' recent-dirs-pushd true
 
 ### ruby config
 eval "$(rbenv init -)"
+
+### node config
+eval "$(nodenv init -)"
 
 ### peco config
 if (( ${+commands[peco]} )); then
@@ -236,3 +246,4 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
+
