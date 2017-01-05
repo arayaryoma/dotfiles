@@ -1,0 +1,22 @@
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8,shift_jis
+
+"using visual beep
+set visualbell
+
+" make possible deleting start of line, eol and indent by backspace key
+set backspace=start,eol,indent
+
+" save to clipboard when yunk
+set clipboard=unnamed
+
+" Choose end of line by two 'v'
+vnoremap v $h
+
+"Delete previous character when by delete key
+inoremap <silent> <C-h> <Del>
+
+" Aliases in insert mode
+inoremap uu <Esc>
+inoremap jj <Esc>
