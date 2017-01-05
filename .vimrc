@@ -70,7 +70,10 @@ call dein#add('fatih/vim-go')
 call dein#add('Quramy/vim-js-pretty-template')
 call dein#add('Quramy/tsuquyomi')
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
-"call dein#add('magarcia/vim-angular2-snippets')
+call dein#add('magarcia/vim-angular2-snippets')
+call dein#add('editorconfig/editorconfig-vim')
+call dein#add('digitaltoad/vim-pug')
+call dein#add('Yggdroot/indentLine')
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
@@ -87,9 +90,7 @@ endif
 "End dein Scripts-------------------------
 
 " indent config 
-setlocal expandtab 
-setlocal tabstop=2 shiftwidth=1 softtabstop=1
-setlocal autoindent
+
 " NERD Tree configure-------------------------
 " Show hidden file(i.e. dotfiles)
 let NERDTreeShowHidden=1
@@ -106,9 +107,4 @@ let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
-" End of go-vim configure--------------------
-
-" Configure of each languages----------------------
-autocmd BufRead, BufNewFile *.ts setfiletype typescript
-autocmd BufRead, BufNewFile *.html setfiletype html
-" End of Configure of each languages----------------------
+" End of go-vim configure-------------------- 
