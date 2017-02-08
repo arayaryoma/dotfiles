@@ -27,6 +27,7 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 nnoremap <silent><C-i> :Dash<CR>
 nnoremap <C-n> :cn<CR>
 nnoremap <C-m> :cN<CR>
+nnoremap <F8> :TagbarToggle<CR>
 
 """ Aliases in insert mode
 inoremap uu <Esc>
@@ -74,6 +75,9 @@ call dein#add('magarcia/vim-angular2-snippets')
 call dein#add('editorconfig/editorconfig-vim')
 call dein#add('digitaltoad/vim-pug')
 call dein#add('Yggdroot/indentLine')
+call dein#add('majutsushi/tagbar')
+call dein#add('tpope/vim-fugitive')
+call dein#add('maksimr/vim-jsbeautify')
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
@@ -108,3 +112,15 @@ let g:go_fmt_command = "goimports"
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
 " End of go-vim configure-------------------- 
+
+" Javascript -------------------------
+map <c-f> :call JsBeautify()<cr>
+autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+" for json
+autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
+" for jsx
+autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
+" for html
+autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+" for css or scss
+autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
