@@ -1,3 +1,6 @@
+" auto commands
+autocmd Filetype json setl conceallevel=0
+
 " encoding conig
 set encoding=utf-8
 set fileencoding=utf-8
