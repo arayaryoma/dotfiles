@@ -117,6 +117,7 @@ bindkey '^m' do_enter
 alias rubymine="open -a Rubymine.app"
 alias ws="open -a WebStorm.app"
 alias note="open -a Boostnote.app"
+alias vs="open -a Visual\ Studio\ Code.app"
 ## aliases for git
 alias gad="git add"
 alias gco="git commit --verbose"
