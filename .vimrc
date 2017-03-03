@@ -1,5 +1,5 @@
-" auto commands
-autocmd Filetype json setl conceallevel=0
+" Visible quotations in json file
+let g:vim_json_syntax_conceal=0
 
 " encoding conig
 set encoding=utf-8
@@ -81,6 +81,7 @@ call dein#add('Yggdroot/indentLine')
 call dein#add('majutsushi/tagbar')
 call dein#add('tpope/vim-fugitive')
 call dein#add('maksimr/vim-jsbeautify')
+call dein#add('elzr/vim-json')
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
