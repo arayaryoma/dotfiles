@@ -82,6 +82,7 @@ call dein#add('majutsushi/tagbar')
 call dein#add('tpope/vim-fugitive')
 call dein#add('maksimr/vim-jsbeautify')
 call dein#add('elzr/vim-json')
+call dein#add('lumiliet/vim-twig')
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
