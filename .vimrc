@@ -33,8 +33,8 @@ nnoremap <C-m> :cN<CR>
 nnoremap <F8> :TagbarToggle<CR>
 
 """ Aliases in insert mode
-inoremap uu <Esc>
-inoremap jj <Esc> 
+"inoremap uu <Esc>
+"inoremap jj <Esc> 
 inoremap <C-j> <C-x><C-o>
 
 """ autocompletions
