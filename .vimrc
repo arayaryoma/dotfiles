@@ -83,6 +83,7 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('maksimr/vim-jsbeautify')
 call dein#add('elzr/vim-json')
 call dein#add('lumiliet/vim-twig')
+call dein#add('jwalton512/vim-blade')
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
@@ -127,5 +128,7 @@ autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
 autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
 " for html
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+" for php
+autocmd FileType php noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 " for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
