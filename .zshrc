@@ -6,6 +6,7 @@ export PATH=$PYENV_ROOT/shims:$PATH
 export GOPATH=$HOME/Workspace/go
 export GOROOT="/usr/local/go"
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+export PATH=/usr/local/opt/libressl/bin:$PATH
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vim
@@ -65,6 +66,12 @@ PROMPT="%{${fg[blue]}%}%~%{${blue}%}
 
 # aliases for Docker
 alias "docker-run"="/Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
+alias dps="docker ps"
+alias drm="docker rm"
+alias drmi="docker rmi"
+alias dkill="docker kill"
+alias drm-all-processes="docker ps -q | xargs docker kill && docker ps -a -q | xargs docker rm"
+alias drmi-upgraded-images='docker rmi $(docker images --all | grep "^<none>" | awk "{print $3}")'
 
 ## aliases for editors
 alias rubymine="open -a /Applications/RubyMine.app"
@@ -130,6 +137,7 @@ alias gme="git merge"
 alias gbr="git branch"
 alias grh="git reset HEAD"
 alias glog="git log --oneline --graph --decorate --all"
+alias amend="gco --amend"
 
 ###
 
