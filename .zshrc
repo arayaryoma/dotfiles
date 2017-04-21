@@ -257,3 +257,5 @@ elif type compctl &>/dev/null; then
 fi
 ###-end-npm-completion-###
 
+
+export PATH="$HOME/.yarn/bin:$PATH"
