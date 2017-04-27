@@ -4,7 +4,7 @@ export PATH=$HOME/.nodenv/shims:$HOME/.nodenv/versions:/usr/local/var/pyenv/shim
 export PYENV_ROOT="/usr/local/var/pyenv"
 export PATH=$PYENV_ROOT/shims:$PATH
 export GOPATH=$HOME/Workspace/go
-export GOROOT="/usr/local/go"
+export GOROOT=/usr/local/
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 export PATH=/usr/local/opt/libressl/bin:$PATH
 export LC_ALL=en_US.UTF-8
@@ -259,3 +259,4 @@ fi
 
 
 export PATH="$HOME/.yarn/bin:$PATH"
+
