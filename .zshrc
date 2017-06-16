@@ -102,6 +102,10 @@ function lo {
     open "http://localhost:$1"
 }
 
+function base64 {
+  openssl base64 -in $1 -out $2
+}
+
 ## Run `ls` and `git status` when user input only <ENTER>
 function do_enter() {
   if [ -n "$BUFFER" ]; then
@@ -260,4 +264,5 @@ fi
 
 
 export PATH="$HOME/.yarn/bin:$PATH"
+
 
