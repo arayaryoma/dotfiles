@@ -3,8 +3,8 @@ compinit
 export PATH=$HOME/.nodenv/shims:$HOME/.nodenv/versions:/usr/local/var/pyenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/usr/local/share/git-core/contrib/diff-highlight:/sbin
 export PYENV_ROOT="/usr/local/var/pyenv"
 export PATH=$PYENV_ROOT/shims:$PATH
-export GOPATH=$HOME/Workspace/go
 export GOROOT=/usr/local/go
+export GOPATH=$HOME/Workspace
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 export PATH=/usr/local/opt/libressl/bin:$PATH
 export PATH=/usr/local/opt/curl/bin:$PATH
