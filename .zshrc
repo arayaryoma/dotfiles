@@ -81,7 +81,6 @@ alias webstorm="open -a /Applications/WebStorm.app"
 ## aliases for shell
 alias zshrc="vim ~/.zshrc"
 alias reload="source ~/.zshrc"
-alias ls="gls --color"
 alias vimrc="vim ~/.vimrc"
 alias tx="cd ~ && tmux"
 alias hs="python -m http.server"
@@ -174,9 +173,6 @@ zstyle ':chpwd:*' recent-dirs-pushd true
 
 ### ruby config
 eval "$(rbenv init -)"
-
-### node config
-eval "$(nodenv init -)"
 
 ### peco config
 if (( ${+commands[peco]} )); then
