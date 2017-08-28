@@ -87,6 +87,8 @@ call dein#add('maksimr/vim-jsbeautify')
 call dein#add('elzr/vim-json')
 call dein#add('lumiliet/vim-twig')
 call dein#add('jwalton512/vim-blade')
+call dein#add('pangloss/vim-javascript')
+call dein#add('moll/vim-node')
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
