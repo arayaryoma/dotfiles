@@ -109,6 +109,10 @@ endif
 " NERD Tree configure-------------------------
 " Show hidden file(i.e. dotfiles)
 let NERDTreeShowHidden=1
+function NERDTreeWinSize(arg)
+  let g:NERDTreeWinSize=a:arg
+endfunction
+command! -nargs=* Ntws call NERDTreeWinSize( '<args>' ) | NERDTree
 
 " End of NERD Tree configure -------------------------
 
