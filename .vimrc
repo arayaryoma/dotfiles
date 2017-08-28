@@ -21,6 +21,9 @@ set clipboard=unnamedplus
 " syntax hilight config
 syntax on
 
+" highlight variable under cursor
+autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+
 " Choose end of line by two 'v'
 vnoremap v $h
 
