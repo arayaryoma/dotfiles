@@ -89,6 +89,8 @@ call dein#add('lumiliet/vim-twig')
 call dein#add('jwalton512/vim-blade')
 call dein#add('pangloss/vim-javascript')
 call dein#add('moll/vim-node')
+call dein#add('othree/csscomplete.vim')
+call dein#add('hail2u/vim-css3-syntax')
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
@@ -141,3 +143,9 @@ autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 autocmd FileType php noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 " for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+
+augroup VimCSS3Syntax
+  autocmd!
+
+  autocmd FileType css setlocal iskeyword+=-
+augroup END
