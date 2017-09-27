@@ -52,7 +52,7 @@ if &compatible
 endif
 
 " Required:
-set runtimepath^=~/.vim/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.vim/bundles/repos/github.com/Shougo/dein.vim
 
 " Required:
 call dein#begin(expand('~/.vim'))
