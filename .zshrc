@@ -7,6 +7,7 @@ export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=$HOME/Workspace
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 export PATH=/usr/local/opt/libressl/bin:$PATH
+export PATH=/usr/local/opt/curl/bin:$PATH
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vim
@@ -101,6 +102,10 @@ function lo {
     open "http://localhost:$1"
 }
 
+function base64 {
+  openssl base64 -in $1 -out $2
+}
+
 ## Run `ls` and `git status` when user input only <ENTER>
 function do_enter() {
   if [ -n "$BUFFER" ]; then
@@ -131,6 +136,7 @@ alias gco="git commit --verbose"
 alias gst="git status -sb"
 alias gdif="git diff"
 alias gch="git checkout"
+alias gcl="git clone"
 alias gpsh="git push"
 alias gash="git stash"
 alias gme="git merge"
@@ -259,4 +265,5 @@ fi
 
 
 export PATH="$HOME/.yarn/bin:$PATH"
+
 
