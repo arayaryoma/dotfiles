@@ -1,3 +1,6 @@
+set dir=$HOME/.vim_tmp/swap
+if !isdirectory(&dir) | call mkdir(&dir, 'p', 0700) | endif
+
 " Visible quotations in json file
 let g:vim_json_syntax_conceal=0
 
@@ -91,6 +94,7 @@ call dein#add('pangloss/vim-javascript')
 call dein#add('moll/vim-node')
 call dein#add('othree/csscomplete.vim')
 call dein#add('hail2u/vim-css3-syntax')
+call dein#add('vim-syntastic/syntastic')
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
@@ -149,3 +153,13 @@ augroup VimCSS3Syntax
 
   autocmd FileType css setlocal iskeyword+=-
 augroup END
+
+" syntastic config
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
