@@ -8,8 +8,14 @@ export GOPATH=$HOME/Workspace
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 export PATH=/usr/local/opt/libressl/bin:$PATH
 export PATH=/usr/local/opt/curl/bin:$PATH
-export PATH=/usr/local/Gogland/bin:$PATH
+export PATH=/usr/local/GoLand/bin:$PATH
 export PATH=/usr/local/WebStorm/bin:$PATH
+export PATH=/usr/local/google-cloud-sdk/bin:$PATH
+export PATH=/usr/local/go_appengine:$PATH
+export PATH=/usr/local/rbenv/bin:$PATH
+export PATH=/usr/local/java/jdk-9.0.1/bin:$PATH
+export PATH=/usr/local/Postman:$PATH
+export PATH=$HOME/.npm-global/bin:$PATH
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vim
@@ -88,6 +94,7 @@ alias ll="ls -l"
 alias la="ls -a"
 alias m="make"
 alias clean="rm -rf ./*"
+alias gcloud="sudo /usr/local/google-cloud-sdk/bin/gcloud"
 function dynamolocal {
 	java -Djava.library.path=$DYNAMODB_LOCAL_PATH -jar $DYNAMODB_LOCAL_PATH/DynamoDBLocal.jar -port 3003
 }
