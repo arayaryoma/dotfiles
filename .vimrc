@@ -95,6 +95,7 @@ call dein#add('moll/vim-node')
 call dein#add('othree/csscomplete.vim')
 call dein#add('hail2u/vim-css3-syntax')
 call dein#add('vim-syntastic/syntastic')
+call dein#add('wavded/vim-stylus')
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
