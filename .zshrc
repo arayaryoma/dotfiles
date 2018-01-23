@@ -96,7 +96,7 @@ alias m="make"
 alias clean="rm -rf ./*"
 alias gcloud="sudo /usr/local/google-cloud-sdk/bin/gcloud"
 alias webstorm="webstorm $(pwd)"
-alias androidstudio="/usr/local/android-studio/bin/studio"
+alias androidstudio="LD_PRELOAD='/usr/lib64/libstdc++.so.6 ' /usr/local/android-studio/bin/studio"
 function dynamolocal {
 	java -Djava.library.path=$DYNAMODB_LOCAL_PATH -jar $DYNAMODB_LOCAL_PATH/DynamoDBLocal.jar -port 3003
 }
