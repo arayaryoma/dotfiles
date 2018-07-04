@@ -4,7 +4,7 @@ export PATH=$HOME/.nodenv/shims:$HOME/.nodenv/versions:/usr/local/var/pyenv/shim
 export PYENV_ROOT="/usr/local/var/pyenv"
 export PATH=$PYENV_ROOT/shims:$PATH
 export GOROOT=/usr/local/go
-export GOPATH=$HOME/Workspace
+export GOPATH=$HOME/dev
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 export PATH=/usr/local/opt/libressl/bin:$PATH
 export PATH=/usr/local/opt/curl/bin:$PATH
@@ -270,3 +270,7 @@ fi
 export PATH="$HOME/.yarn/bin:$PATH"
 
 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
