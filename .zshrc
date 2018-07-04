@@ -21,7 +21,15 @@ export LANG=en_US.UTF-8
 export EDITOR=vim
 export AWS_HOME=$HOME/.aws
 export DYNAMODB_LOCAL_PATH=/Users/Rio/Workspace/dynamodb_local_2016-05-17
-eval "$(direnv hook zsh)"
+
+if type direnv > /dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
+
+### ruby config
+if type rbenv > /dev/null 2>&1; then
+  eval "$(rbenv init -)"
+fi
 
 # match uppercase from lowercarse
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -177,9 +185,6 @@ zstyle ':chpwd:*' recent-dirs-max 500
 zstyle ':chpwd:*' recent-dirs-default true
 zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/shell/chpwd-recent-dirs"
 zstyle ':chpwd:*' recent-dirs-pushd true
-
-### ruby config
-eval "$(rbenv init -)"
 
 ### peco config
 if (( ${+commands[peco]} )); then
