@@ -3,11 +3,19 @@ compinit
 export PATH=$HOME/.nodenv/shims:$HOME/.nodenv/versions:/usr/local/var/pyenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/usr/local/share/git-core/contrib/diff-highlight:/sbin
 export PYENV_ROOT="/usr/local/var/pyenv"
 export PATH=$PYENV_ROOT/shims:$PATH
-export GOROOT=/usr/local/opt/go/libexec
+export GOROOT=/usr/local/go
 export GOPATH=$HOME/Workspace
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 export PATH=/usr/local/opt/libressl/bin:$PATH
 export PATH=/usr/local/opt/curl/bin:$PATH
+export PATH=/usr/local/GoLand/bin:$PATH
+export PATH=/usr/local/WebStorm/bin:$PATH
+export PATH=/usr/local/google-cloud-sdk/bin:$PATH
+export PATH=/usr/local/go_appengine:$PATH
+export PATH=/usr/local/rbenv/bin:$PATH
+export PATH=/usr/local/java/jdk-9.0.1/bin:$PATH
+export PATH=/usr/local/Postman:$PATH
+export PATH=$HOME/.npm-global/bin:$PATH
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vim
@@ -74,21 +82,21 @@ alias dkill="docker kill"
 alias drm-all-processes="docker ps -q | xargs docker kill && docker ps -a -q | xargs docker rm"
 alias drmi-upgraded-images='docker rmi $(docker images --all | grep "^<none>" | awk "{print $3}")'
 
-## aliases for editors
-alias rubymine="open -a /Applications/RubyMine.app"
-alias webstorm="open -a /Applications/WebStorm.app"
-
 ## aliases for shell
 alias zshrc="vim ~/.zshrc"
 alias reload="source ~/.zshrc"
-alias ls="gls --color"
 alias vimrc="vim ~/.vimrc"
 alias tx="cd ~ && tmux"
 alias hs="python -m http.server"
+alias ls="ls --color=auto"
 alias l="ls -al"
 alias ll="ls -l"
 alias la="ls -a"
 alias m="make"
+alias clean="rm -rf ./*"
+alias gcloud="sudo /usr/local/google-cloud-sdk/bin/gcloud"
+alias webstorm="webstorm $(pwd)"
+alias androidstudio="LD_PRELOAD='/usr/lib64/libstdc++.so.6 ' /usr/local/android-studio/bin/studio"
 function dynamolocal {
 	java -Djava.library.path=$DYNAMODB_LOCAL_PATH -jar $DYNAMODB_LOCAL_PATH/DynamoDBLocal.jar -port 3003
 }
@@ -105,6 +113,8 @@ function lo {
 function base64 {
   openssl base64 -in $1 -out $2
 }
+
+alias set-trackpoint="echo 255 | sudo tee /sys/devices/platform/i8042/serio1/serio2/sensitivity & echo 255 | sudo tee /sys/devices/platform/i8042/serio1/serio2/speed"
 
 ## Run `ls` and `git status` when user input only <ENTER>
 function do_enter() {
@@ -125,11 +135,7 @@ function do_enter() {
 zle -N do_enter
 bindkey '^m' do_enter
 
-## aliases for launching apps
-alias rubymine="open -a Rubymine.app"
-alias ws="open -a WebStorm.app"
-alias note="open -a Boostnote.app"
-alias vs="open -a Visual\ Studio\ Code.app"
+
 ## aliases for git
 alias gad="git add"
 alias gco="git commit --verbose"
@@ -174,9 +180,6 @@ zstyle ':chpwd:*' recent-dirs-pushd true
 
 ### ruby config
 eval "$(rbenv init -)"
-
-### node config
-eval "$(nodenv init -)"
 
 ### peco config
 if (( ${+commands[peco]} )); then

@@ -1,3 +1,6 @@
+set dir=$HOME/.vim_tmp/swap
+if !isdirectory(&dir) | call mkdir(&dir, 'p', 0700) | endif
+
 " Visible quotations in json file
 let g:vim_json_syntax_conceal=0
 
@@ -16,10 +19,13 @@ set visualbell
 set backspace=start,eol,indent
 
 " save to clipboard when yunk
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " syntax hilight config
 syntax on
+
+" highlight variable under cursor
+autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 " Choose end of line by two 'v'
 vnoremap v $h
@@ -52,10 +58,10 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=~/.vim/bundles/repos/github.com/Shougo/dein.vim
+set runtimepath^=~/.vim/bundles/repos/github.com/Shougo/dein.vim
 
 " Required:
-call dein#begin(expand('~/.vim'))
+call dein#begin(expand('~/.vim/bundles'))
 
 " Let dein manage dein
 " Required:
@@ -84,6 +90,12 @@ call dein#add('maksimr/vim-jsbeautify')
 call dein#add('elzr/vim-json')
 call dein#add('lumiliet/vim-twig')
 call dein#add('jwalton512/vim-blade')
+call dein#add('pangloss/vim-javascript')
+call dein#add('moll/vim-node')
+call dein#add('othree/csscomplete.vim')
+call dein#add('hail2u/vim-css3-syntax')
+call dein#add('vim-syntastic/syntastic')
+call dein#add('wavded/vim-stylus')
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
@@ -104,6 +116,10 @@ endif
 " NERD Tree configure-------------------------
 " Show hidden file(i.e. dotfiles)
 let NERDTreeShowHidden=1
+function NERDTreeWinSize(arg)
+  let g:NERDTreeWinSize=a:arg
+endfunction
+command! -nargs=* Ntws call NERDTreeWinSize( '<args>' ) | NERDTree
 
 " End of NERD Tree configure -------------------------
 
@@ -132,3 +148,19 @@ autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 autocmd FileType php noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 " for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+
+augroup VimCSS3Syntax
+  autocmd!
+
+  autocmd FileType css setlocal iskeyword+=-
+augroup END
+
+" syntastic config
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
