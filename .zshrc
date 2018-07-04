@@ -1,5 +1,7 @@
-autoload -U compinit
-compinit
+autoload -Uz compinit compaudit
+compinit -i
+
+# Set environment variables
 export PATH=$HOME/.nodenv/shims:$HOME/.nodenv/versions:/usr/local/var/pyenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/usr/local/share/git-core/contrib/diff-highlight:/sbin
 export PYENV_ROOT="/usr/local/var/pyenv"
 export PATH=$PYENV_ROOT/shims:$PATH
@@ -16,25 +18,94 @@ export PATH=/usr/local/rbenv/bin:$PATH
 export PATH=/usr/local/java/jdk-9.0.1/bin:$PATH
 export PATH=/usr/local/Postman:$PATH
 export PATH=$HOME/.npm-global/bin:$PATH
+export PATH="$HOME/.yarn/bin:$PATH"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vim
 export AWS_HOME=$HOME/.aws
-export DYNAMODB_LOCAL_PATH=/Users/Rio/Workspace/dynamodb_local_2016-05-17
 
+# Setup direnv
 if type direnv > /dev/null 2>&1; then
   eval "$(direnv hook zsh)"
 fi
 
-### ruby config
+# Setup rbenv
+# # Setup direnv
 if type rbenv > /dev/null 2>&1; then
   eval "$(rbenv init -)"
 fi
 
-# match uppercase from lowercarse
+# aliases
+alias "docker-run"="/Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
+alias dps="docker ps"
+alias drm="docker rm"
+alias drmi="docker rmi"
+alias dkill="docker kill"
+alias drm-all-processes="docker ps -q | xargs docker kill && docker ps -a -q | xargs docker rm"
+alias drmi-upgraded-images='docker rmi $(docker images --all | grep "^<none>" | awk "{print $3}")'
+alias zshrc="vim ~/.zshrc"
+alias reload="source ~/.zshrc"
+alias vimrc="vim ~/.vimrc"
+alias tx="cd ~ && tmux"
+alias hs="python -m http.server"
+alias ls="ls -G"
+alias l="ls -al"
+alias ll="ls -l"
+alias la="ls -a"
+alias m="make"
+alias clean="rm -rf ./*"
+alias gcloud="sudo /usr/local/google-cloud-sdk/bin/gcloud"
+alias gad="git add"
+alias gco="git commit --verbose"
+alias gst="git status -sb"
+alias gdif="git diff"
+alias gch="git checkout"
+alias gcl="git clone"
+alias gpsh="git push"
+alias gash="git stash"
+alias gme="git merge"
+alias gbr="git branch"
+alias grh="git reset HEAD"
+alias glog="git log --oneline --graph --decorate --all"
+alias amend="gco --amend"
+function dynamolocal {
+	java -Djava.library.path=$DYNAMODB_LOCAL_PATH -jar $DYNAMODB_LOCAL_PATH/DynamoDBLocal.jar -port 3003
+}
+function asp {
+  export AWS_DEFAULT_PROFILE=$1
+  export AWS_PROFILE=$1
+  echo "AWS_DEFAULT_PROFILE=$AWS_DEFAULT_PROFILE"
+  echo "AWS_PROFILE=$AWS_PROFILE"
+}
+function lo {
+    open "http://localhost:$1"
+}
+function base64 {
+  openssl base64 -in $1 -out $2
+}
+
+# Run `ls` and `git status` when user input only <ENTER>
+function do_enter() {
+  if [ -n "$BUFFER" ]; then
+    zle accept-line
+    return 0
+  fi
+  echo
+  ls -a
+  if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
+    echo
+    echo -e "\e[0;33m--- git status ---\e[0m"
+    git status
+  fi
+  zle reset-prompt
+  return 0
+}
+zle -N do_enter
+
+# match uppercase from lowercarse in completion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-### Key bindings
+# Key bindings
 bindkey '^e' forward-word
 bindkey '^f' forward-word
 bindkey '^w' backward-word
@@ -42,8 +113,9 @@ bindkey '^p' up-line-or-search
 bindkey '^n' down-line-or-search
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
+bindkey '^m' do_enter
 
-### Visual settings
+# Visual settings
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 export LS_COLORS
 if [ -f ~/.dircolors ]; then
@@ -65,7 +137,6 @@ zstyle ':vcs_info:*' actionformats \
 zstyle ':vcs_info:*' formats       \
   '%F{white}[%F{2}%b%F{white}]%f '
 zstyle ':vcs_info:*' branchformat '%b%F{1}:%F{3}%r'
-
 zstyle ':vcs_info:*' enable git
 
 # or use pre_cmd, see man zshcontrib
@@ -77,103 +148,6 @@ vcs_info_wrapper() {
 }
 PROMPT="%{${fg[blue]}%}%~%{${blue}%} 
 %n"$'$(vcs_info_wrapper)'"$ "
-###
-
-### aliases
-
-# aliases for Docker
-alias "docker-run"="/Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
-alias dps="docker ps"
-alias drm="docker rm"
-alias drmi="docker rmi"
-alias dkill="docker kill"
-alias drm-all-processes="docker ps -q | xargs docker kill && docker ps -a -q | xargs docker rm"
-alias drmi-upgraded-images='docker rmi $(docker images --all | grep "^<none>" | awk "{print $3}")'
-
-## aliases for shell
-alias zshrc="vim ~/.zshrc"
-alias reload="source ~/.zshrc"
-alias vimrc="vim ~/.vimrc"
-alias tx="cd ~ && tmux"
-alias hs="python -m http.server"
-alias ls="ls -G"
-alias l="ls -al"
-alias ll="ls -l"
-alias la="ls -a"
-alias m="make"
-alias clean="rm -rf ./*"
-alias gcloud="sudo /usr/local/google-cloud-sdk/bin/gcloud"
-alias webstorm="webstorm $(pwd)"
-alias androidstudio="LD_PRELOAD='/usr/lib64/libstdc++.so.6 ' /usr/local/android-studio/bin/studio"
-function dynamolocal {
-	java -Djava.library.path=$DYNAMODB_LOCAL_PATH -jar $DYNAMODB_LOCAL_PATH/DynamoDBLocal.jar -port 3003
-}
-function asp {
-  export AWS_DEFAULT_PROFILE=$1
-  export AWS_PROFILE=$1
-  echo "AWS_DEFAULT_PROFILE=$AWS_DEFAULT_PROFILE"
-  echo "AWS_PROFILE=$AWS_PROFILE"
-}
-function lo {
-    open "http://localhost:$1"
-}
-
-function base64 {
-  openssl base64 -in $1 -out $2
-}
-
-alias set-trackpoint="echo 255 | sudo tee /sys/devices/platform/i8042/serio1/serio2/sensitivity & echo 255 | sudo tee /sys/devices/platform/i8042/serio1/serio2/speed"
-
-## Run `ls` and `git status` when user input only <ENTER>
-function do_enter() {
-  if [ -n "$BUFFER" ]; then
-    zle accept-line
-    return 0
-  fi
-  echo
-  ls -a
-  if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
-    echo
-    echo -e "\e[0;33m--- git status ---\e[0m"
-    git status
-  fi
-  zle reset-prompt
-  return 0
-}
-zle -N do_enter
-bindkey '^m' do_enter
-
-
-## aliases for git
-alias gad="git add"
-alias gco="git commit --verbose"
-alias gst="git status -sb"
-alias gdif="git diff"
-alias gch="git checkout"
-alias gcl="git clone"
-alias gpsh="git push"
-alias gash="git stash"
-alias gme="git merge"
-alias gbr="git branch"
-alias grh="git reset HEAD"
-alias glog="git log --oneline --graph --decorate --all"
-alias amend="gco --amend"
-
-###
-
-### tmux config
-# auto launch tmux when launching shell
-#if [ -z "$PS1" ]; then return ; fi
-
-#if [ -z $TMUX ] ; then
-#        if [ -z `tmux ls` ] ; then
-#                tmux
-#        else
-#                tmux attach
-#        fi
-#fi
-###
-
 
 # Enable cdr and add-zsh-hook
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
@@ -186,7 +160,7 @@ zstyle ':chpwd:*' recent-dirs-default true
 zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/shell/chpwd-recent-dirs"
 zstyle ':chpwd:*' recent-dirs-pushd true
 
-### peco config
+# peco config
 if (( ${+commands[peco]} )); then
   peco-go-to-dir () {
     local line
@@ -213,14 +187,11 @@ if (( ${+commands[peco]} )); then
   zle -N peco-go-to-dir
   bindkey '^g' peco-go-to-dir
 fi
-###-begin-npm-completion-###
-#
+
 # npm command completion script
-#
 # Installation: npm completion >> ~/.bashrc  (or ~/.zshrc)
 # Or, maybe: npm completion > /usr/local/etc/bash_completion.d/npm
 #
-
 if type complete &>/dev/null; then
   _npm_completion () {
     local words cword
@@ -269,13 +240,8 @@ elif type compctl &>/dev/null; then
   }
   compctl -K _npm_completion npm
 fi
-###-end-npm-completion-###
 
-
-export PATH="$HOME/.yarn/bin:$PATH"
-
-
-
+# Configure nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion 
