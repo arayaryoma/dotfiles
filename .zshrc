@@ -1,17 +1,26 @@
 autoload -Uz compinit compaudit
 compinit -i
 source ~/.http.zsh
-# Set environment variables
-export PATH=$HOME/.nodenv/shims:$HOME/.nodenv/versions:/usr/local/var/pyenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/usr/local/share/git-core/contrib/diff-highlight:/sbin
-export PYENV_ROOT="/usr/local/var/pyenv"
+
+### environment variables
+export DEV_ROOT=$HOME/dev
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH=/bin:$PATH
+export PATH=/sbin:$PATH
+export PATH=/usr/bin:$PATH
+export PATH=/usr/sbin:$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/var/pyenv/shims:$PATH
+export PATH=/usr/local/share/git-core/contrib/diff-highlight:$PATH
+export PATH=$PYENV_ROOT/bin:$PATH
 export PATH=$PYENV_ROOT/shims:$PATH
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/dev
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 export PATH=/usr/local/opt/libressl/bin:$PATH
 export PATH=/usr/local/opt/curl/bin:$PATH
 export PATH=/usr/local/GoLand/bin:$PATH
 export PATH=/usr/local/WebStorm/bin:$PATH
+export PATH=/usr/local/PhpStorm/bin:$PATH
+export PATH=/usr/local/idea/bin:$PATH
 export PATH=/usr/local/google-cloud-sdk/bin:$PATH
 export PATH=/usr/local/go_appengine:$PATH
 export PATH=/usr/local/rbenv/bin:$PATH
@@ -20,14 +29,48 @@ export PATH=/usr/local/Postman:$PATH
 export PATH=$HOME/.npm-global/bin:$PATH
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
+export PATH=$DEV_ROOT/src/github.com/flutter/flutter/bin:$PATH
+export PATH=$HOME/.config/yarn/global/node_modules/.bin:$PATH
+export PATH=$HOME/.deno/bin:$PATH 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vim
 export AWS_HOME=$HOME/.aws
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/dev
 
 # Setup direnv
 if type direnv > /dev/null 2>&1; then
   eval "$(direnv hook zsh)"
+fi
+
+export DYNAMODB_LOCAL_PATH=/Users/Rio/Workspace/dynamodb_local_2016-05-17
+export NVM_DIR="$HOME/.nvm"
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+export LS_COLORS
+
+# match uppercase from lowercarse
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+### Key bindings
+bindkey '^e' forward-word
+bindkey '^f' forward-word
+bindkey '^w' backward-word
+bindkey '^p' up-line-or-search
+bindkey '^n' down-line-or-search
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
+
+### Visual settings
+if [ -f ~/.dircolors ]; then
+  if type dircolors > /dev/null 2>&1; then
+    eval $(dircolors ~/.dircolors)
+  elif type gdircolors > /dev/null 2>&1; then
+    eval $(gdircolors ~/.dircolors)
+  fi
+fi
+if [ -n "$LS_COLORS" ]; then
+  zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 fi
 
 # Setup rbenv
@@ -42,7 +85,7 @@ alias dps="docker ps"
 alias drm="docker rm"
 alias drmi="docker rmi"
 alias dkill="docker kill"
-alias drm-all-processes="docker ps -q | xargs docker kill && docker ps -a -q | xargs docker rm"
+alias drm-all-processes="docker ps -aq | xargs docker kill && docker ps -a -q | xargs docker rm"
 alias drmi-upgraded-images='docker rmi $(docker images --all | grep "^<none>" | awk "{print $3}")'
 alias zshrc="vim ~/.zshrc"
 alias reload="source ~/.zshrc"
@@ -69,6 +112,13 @@ alias gbr="git branch"
 alias grh="git reset HEAD"
 alias glog="git log --oneline --graph --decorate --all"
 alias amend="gco --amend"
+alias webstorm="webstorm $(pwd)"
+alias androidstudio="LD_PRELOAD='/usr/lib64/libstdc++.so.6 ' /usr/local/android-studio/bin/studio"
+alias "adb restart"="adb kill-server && adb start-server"
+alias rn-debug-menu="adb shell input keyevent 82"
+if type twty > /dev/null; then
+  alias t="twty"
+fi
 function dynamolocal {
 	java -Djava.library.path=$DYNAMODB_LOCAL_PATH -jar $DYNAMODB_LOCAL_PATH/DynamoDBLocal.jar -port 3003
 }
@@ -245,3 +295,16 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion 
+###-end-npm-completion-###
+
+fpath=(~/.zsh/completion $fpath)
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+if command -v direnv 1>/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
+
+### nvm config
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
