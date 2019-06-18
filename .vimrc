@@ -19,7 +19,7 @@ set visualbell
 set backspace=start,eol,indent
 
 " save to clipboard when yunk
-set clipboard=unnamedplus
+set clipboard^=unnamed,unnamedplus
 
 " syntax hilight config
 syntax on
