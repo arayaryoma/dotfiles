@@ -1,6 +1,6 @@
 autoload -Uz compinit compaudit
 compinit -i
-
+source ~/dotfiles/.http.zsh
 # Set environment variables
 export PATH=$HOME/.nodenv/shims:$HOME/.nodenv/versions:/usr/local/var/pyenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/usr/local/share/git-core/contrib/diff-highlight:/sbin
 export PYENV_ROOT="/usr/local/var/pyenv"
@@ -19,6 +19,7 @@ export PATH=/usr/local/java/jdk-9.0.1/bin:$PATH
 export PATH=/usr/local/Postman:$PATH
 export PATH=$HOME/.npm-global/bin:$PATH
 export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vim
