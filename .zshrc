@@ -1,6 +1,6 @@
 autoload -Uz compinit compaudit
 compinit -i
-source ~/dotfiles/.http.zsh
+source ~/.http.zsh
 # Set environment variables
 export PATH=$HOME/.nodenv/shims:$HOME/.nodenv/versions:/usr/local/var/pyenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/usr/local/share/git-core/contrib/diff-highlight:/sbin
 export PYENV_ROOT="/usr/local/var/pyenv"
