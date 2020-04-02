@@ -7,11 +7,14 @@ let g:vim_json_syntax_conceal=0
 " encoding conig
 set encoding=utf-8
 set fileencoding=utf-8
-set fileencodings=utf-8,shift_jis
+set fileencodings=utf-8,sjis,utf-16le,utf-16,euc-jp
+
+set autoindent
 
 " show numbers of line
 set number
 highlight LineNr ctermfg=210
+
 " using visual beep
 set visualbell
 
@@ -25,7 +28,7 @@ set clipboard^=unnamed,unnamedplus
 syntax on
 
 " highlight variable under cursor
-autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+" autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 " Choose end of line by two 'v'
 vnoremap v $h
@@ -58,60 +61,61 @@ if &compatible
 endif
 
 " Required:
-set runtimepath^=~/.vim/bundles/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-call dein#begin(expand('~/.vim/bundles'))
+if dein#load_state('~/.cache/dein')
+  call dein#begin('~/.cache/dein')
 
-" Let dein manage dein
-" Required:
-call dein#add('Shougo/dein.vim')
+  " Let dein manage dein
+  " Required:
+  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
-" Add or remove your plugins here:
-call dein#add('Shougo/neosnippet.vim')
-call dein#add('Shougo/neosnippet-snippets')
-call dein#add('Shougo/neocomplete')
-call dein#add('scrooloose/syntastic')
-call dein#add('rizzatti/dash.vim')
-call dein#add('scrooloose/nerdtree')
-call dein#add('mattn/emmet-vim')
-call dein#add('leafgarland/typescript-vim')
-call dein#add('fatih/vim-go')
-call dein#add('Quramy/vim-js-pretty-template')
-call dein#add('Quramy/tsuquyomi')
-call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
-call dein#add('magarcia/vim-angular2-snippets')
-call dein#add('editorconfig/editorconfig-vim')
-call dein#add('digitaltoad/vim-pug')
-call dein#add('Yggdroot/indentLine')
-call dein#add('majutsushi/tagbar')
-call dein#add('tpope/vim-fugitive')
-call dein#add('maksimr/vim-jsbeautify')
-call dein#add('elzr/vim-json')
-call dein#add('lumiliet/vim-twig')
-call dein#add('jwalton512/vim-blade')
-call dein#add('pangloss/vim-javascript')
-call dein#add('moll/vim-node')
-call dein#add('othree/csscomplete.vim')
-call dein#add('hail2u/vim-css3-syntax')
-call dein#add('vim-syntastic/syntastic')
-call dein#add('wavded/vim-stylus')
-" You can specify revision/branch/tag.
-call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
+  " Add or remove your plugins here like this:
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('Shougo/neocomplete')
+  call dein#add('scrooloose/syntastic')
+  call dein#add('rizzatti/dash.vim')
+  call dein#add('scrooloose/nerdtree')
+  call dein#add('mattn/emmet-vim')
+  call dein#add('leafgarland/typescript-vim')
+  call dein#add('fatih/vim-go')
+  call dein#add('Quramy/vim-js-pretty-template')
+  call dein#add('Quramy/tsuquyomi')
+  call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+  call dein#add('magarcia/vim-angular2-snippets')
+  call dein#add('editorconfig/editorconfig-vim')
+  call dein#add('digitaltoad/vim-pug')
+  call dein#add('Yggdroot/indentLine')
+  call dein#add('majutsushi/tagbar')
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('maksimr/vim-jsbeautify')
+  call dein#add('elzr/vim-json')
+  call dein#add('lumiliet/vim-twig')
+  call dein#add('jwalton512/vim-blade')
+  call dein#add('pangloss/vim-javascript')
+  call dein#add('moll/vim-node')
+  call dein#add('othree/csscomplete.vim')
+  call dein#add('hail2u/vim-css3-syntax')
+  call dein#add('vim-syntastic/syntastic')
+  call dein#add('wavded/vim-stylus')
 
-" Required:
-call dein#end()
+  " Required:
+  call dein#end()
+  call dein#save_state()
+endif
 
 " Required:
 filetype plugin indent on
+syntax enable
 
 " If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
-"End dein Scripts-------------------------
+"if dein#check_install()
+"  call dein#install()
+"endif
 
-" indent config 
+"End dein Scripts-------------------------
 
 " NERD Tree configure-------------------------
 " Show hidden file(i.e. dotfiles)

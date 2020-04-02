@@ -1,8 +1,11 @@
 autoload -Uz compinit compaudit
 compinit -i
 source ~/.http.zsh
+source $HOME/.cargo/env
 
 ### environment variables
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/dev
 export DEV_ROOT=$HOME/dev
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH=/bin:$PATH
@@ -36,8 +39,6 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vim
 export AWS_HOME=$HOME/.aws
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/dev
 
 # Setup direnv
 if type direnv > /dev/null 2>&1; then
@@ -85,20 +86,20 @@ alias dps="docker ps"
 alias drm="docker rm"
 alias drmi="docker rmi"
 alias dkill="docker kill"
+alias dc="docker-compose"
 alias drm-all-processes="docker ps -aq | xargs docker kill && docker ps -a -q | xargs docker rm"
 alias drmi-upgraded-images='docker rmi $(docker images --all | grep "^<none>" | awk "{print $3}")'
 alias zshrc="vim ~/.zshrc"
 alias reload="source ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
 alias tx="cd ~ && tmux"
-alias hs="python -m http.server"
 alias ls="ls -G"
 alias l="ls -al"
 alias ll="ls -l"
 alias la="ls -a"
 alias m="make"
 alias clean="rm -rf ./*"
-alias gcloud="sudo /usr/local/google-cloud-sdk/bin/gcloud"
+alias g="git"
 alias gad="git add"
 alias gco="git commit --verbose"
 alias gst="git status -sb"
@@ -111,14 +112,20 @@ alias gme="git merge"
 alias gbr="git branch"
 alias grh="git reset HEAD"
 alias glog="git log --oneline --graph --decorate --all"
+alias gsw="git switch"
 alias amend="gco --amend"
+alias switch="gbr -a | peco | xargs git switch"
 alias webstorm="webstorm $(pwd)"
 alias androidstudio="LD_PRELOAD='/usr/lib64/libstdc++.so.6 ' /usr/local/android-studio/bin/studio"
 alias "adb restart"="adb kill-server && adb start-server"
 alias rn-debug-menu="adb shell input keyevent 82"
+alias y="yarn"
 if type twty > /dev/null; then
   alias t="twty"
 fi
+function gi() {
+  curl -slw "\n" https://www.gitignore.io/api/$@ ;
+}
 function dynamolocal {
 	java -Djava.library.path=$DYNAMODB_LOCAL_PATH -jar $DYNAMODB_LOCAL_PATH/DynamoDBLocal.jar -port 3003
 }
@@ -306,5 +313,24 @@ if command -v direnv 1>/dev/null 2>&1; then
   eval "$(direnv hook zsh)"
 fi
 
+if command -v thefuck 1>/dev/null 2>&1; then
+  eval $(thefuck --alias)
+fi
+
+
 ### nvm config
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# zplug config
+# export ZPLUG_HOME=/usr/local/opt/zplug
+# source $ZPLUG_HOME/init.zsh
+# 
+# zplug load --verbose
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/araya/dev/src/github.com/HematiteCorp/sakigake-api/y/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/araya/dev/src/github.com/HematiteCorp/sakigake-api/y/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/araya/dev/src/github.com/HematiteCorp/sakigake-api/y/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/araya/dev/src/github.com/HematiteCorp/sakigake-api/y/google-cloud-sdk/completion.zsh.inc'; fi
+
+source ~/.yarn-completion/yarn-completion.plugin.zsh

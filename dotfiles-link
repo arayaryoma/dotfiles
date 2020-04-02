@@ -1,9 +1,9 @@
 #!/bin/bash
-ln -s ~/dotfiles/.vimrc ~/.vimrc
-ln -s ~/dotfiles/.zshrc ~/.zshrc
-ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles/.viminfo ~/.viminfo
-ln -s ~/dotfiles/.dir_colors ~/.dir_colors
-ln -s ~/dotfiles/.ideavimrc ~/.ideavimrc
-ln -s ~/dotfiles/.xvimrc ~/.xvimrc
-ln -s ~/dotfiles/.gitignore_global ~/.gitignore_global
+ln -sF ~/dotfiles/.vimrc ~/.vimrc
+ln -sF ~/dotfiles/.zshrc ~/.zshrc
+ln -sF ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -sF ~/dotfiles/.viminfo ~/.viminfo
+ln -sF ~/dotfiles/.dir_colors ~/.dir_colors
+ln -sF ~/dotfiles/.ideavimrc ~/.ideavimrc
+ln -sF ~/dotfiles/.xvimrc ~/.xvimrc
+ln -sF ~/dotfiles/.gitignore_global ~/.gitignore_global
