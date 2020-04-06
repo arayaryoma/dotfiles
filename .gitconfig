@@ -1,0 +1,11 @@
+[user]
+	emai = r1o.ryoma.abe@gmail.com
+	name = arayaryoma
+	email = r1o.ryoma.abe@gmail.com
+[core]
+	excludesFile = /Users/araya/.gitignore_global
+[commit]
+	verbose = true
+
+[ghq]
+root = /Users/araya/dev/src
