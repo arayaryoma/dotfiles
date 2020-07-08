@@ -13,6 +13,7 @@ export PATH=/sbin:$PATH
 export PATH=/usr/bin:$PATH
 export PATH=/usr/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/var/pyenv/shims:$PATH
 export PATH=/usr/local/share/git-core/contrib/diff-highlight:$PATH
 export PATH=$PYENV_ROOT/bin:$PATH
@@ -120,11 +121,13 @@ alias androidstudio="LD_PRELOAD='/usr/lib64/libstdc++.so.6 ' /usr/local/android-
 alias "adb restart"="adb kill-server && adb start-server"
 alias rn-debug-menu="adb shell input keyevent 82"
 alias y="yarn"
+# required: https://www.npmjs.com/package/http-server
+alias homura="hs --ssl --cert $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/cert.pem --key $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/privkey.pem"
 if type twty > /dev/null; then
   alias t="twty"
 fi
 function gi() {
-  curl -slw "\n" https://www.gitignore.io/api/$@ ;
+  curl -slw "\n" https://www.toptal.com/developers/gitignore/api/$@ ;
 }
 function dynamolocal {
 	java -Djava.library.path=$DYNAMODB_LOCAL_PATH -jar $DYNAMODB_LOCAL_PATH/DynamoDBLocal.jar -port 3003
