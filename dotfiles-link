@@ -7,3 +7,4 @@ ln -sF ~/dotfiles/.dir_colors ~/.dir_colors
 ln -sF ~/dotfiles/.ideavimrc ~/.ideavimrc
 ln -sF ~/dotfiles/.xvimrc ~/.xvimrc
 ln -sF ~/dotfiles/.gitignore_global ~/.gitignore_global
+ln -sF ~/dotfiles/.http.zsh ~/.http.zsh

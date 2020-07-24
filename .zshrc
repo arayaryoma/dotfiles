@@ -1,10 +1,12 @@
 autoload -Uz compinit compaudit
 compinit -i
 source ~/.http.zsh
+source ~/.nikkeirc
 source $HOME/.cargo/env
+typeset -g ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE='20'
 
 ### environment variables
-export GOROOT=/usr/local/go
+export GOROOT=$HOME/.go
 export GOPATH=$HOME/dev
 export DEV_ROOT=$HOME/dev
 export PYENV_ROOT="$HOME/.pyenv"
@@ -40,6 +42,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vim
 export AWS_HOME=$HOME/.aws
+export NODE_ENV=development
 
 # Setup direnv
 if type direnv > /dev/null 2>&1; then
@@ -120,6 +123,7 @@ alias webstorm="webstorm $(pwd)"
 alias androidstudio="LD_PRELOAD='/usr/lib64/libstdc++.so.6 ' /usr/local/android-studio/bin/studio"
 alias "adb restart"="adb kill-server && adb start-server"
 alias rn-debug-menu="adb shell input keyevent 82"
+alias tcp-ports="lsof -iTCP -nP -sTCP:LISTEN"
 alias y="yarn"
 # required: https://www.npmjs.com/package/http-server
 alias homura="hs --ssl --cert $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/cert.pem --key $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/privkey.pem"
