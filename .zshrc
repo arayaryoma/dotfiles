@@ -1,7 +1,6 @@
 autoload -Uz compinit compaudit
 compinit -i
 source ~/.http.zsh
-source ~/.nikkeirc
 source $HOME/.cargo/env
 typeset -g ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE='20'
 
