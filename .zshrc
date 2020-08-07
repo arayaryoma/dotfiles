@@ -117,7 +117,6 @@ alias grh="git reset HEAD"
 alias glog="git log --oneline --graph --decorate --all"
 alias gsw="git switch"
 alias amend="gco --amend"
-alias switch="gbr -a | peco | xargs git switch"
 alias webstorm="webstorm $(pwd)"
 alias androidstudio="LD_PRELOAD='/usr/lib64/libstdc++.so.6 ' /usr/local/android-studio/bin/studio"
 alias "adb restart"="adb kill-server && adb start-server"
@@ -126,6 +125,14 @@ alias tcp-ports="lsof -iTCP -nP -sTCP:LISTEN"
 alias y="yarn"
 # required: https://www.npmjs.com/package/http-server
 alias homura="hs --ssl --cert $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/cert.pem --key $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/privkey.pem"
+if (( ${+commands[peco]} )); then
+  function switch() {
+    gbr -a | peco | xargs git switch	
+  }
+  zle -N peco-go-to-dir
+  bindkey '^h' switch
+fi
+
 if type twty > /dev/null; then
   alias t="twty"
 fi
