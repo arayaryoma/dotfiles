@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 ln -sF ~/dotfiles/.vimrc ~/.vimrc
 ln -sF ~/dotfiles/.zshrc ~/.zshrc
 ln -sF ~/dotfiles/.tmux.conf ~/.tmux.conf
@@ -8,3 +8,4 @@ ln -sF ~/dotfiles/.ideavimrc ~/.ideavimrc
 ln -sF ~/dotfiles/.xvimrc ~/.xvimrc
 ln -sF ~/dotfiles/.gitignore_global ~/.gitignore_global
 ln -sF ~/dotfiles/.http.zsh ~/.http.zsh
+ln -sF ~/dotfiles/kitty.conf ~/.config/kitty/kitty.conf
