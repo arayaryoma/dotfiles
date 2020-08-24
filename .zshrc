@@ -37,6 +37,7 @@ export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
 export PATH=$DEV_ROOT/src/github.com/flutter/flutter/bin:$PATH
 export PATH=$HOME/.config/yarn/global/node_modules/.bin:$PATH
 export PATH=$HOME/.deno/bin:$PATH 
+export PATH=$HOME/.local/bin:$PATH
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vim
@@ -318,6 +319,7 @@ export NVM_DIR="$HOME/.nvm"
 ###-end-npm-completion-###
 
 fpath=(~/.zsh/completion $fpath)
+
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
