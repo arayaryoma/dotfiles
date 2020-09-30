@@ -114,7 +114,7 @@ alias gdif="git diff"
 alias glog="git log --oneline --graph --decorate --all"
 alias gme="git merge"
 alias gpsh="git push"
-alias gpo="git push -u origin $(git symbolic-ref --short -q HEAD)"
+alias gpo="git symbolic-ref --short -q HEAD | xargs git push -u origin"
 alias grh="git reset HEAD"
 alias gash="git stash"
 alias gst="git status -sb"
@@ -129,9 +129,9 @@ alias y="yarn"
 alias homura="hs --ssl --cert $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/cert.pem --key $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/privkey.pem"
 if (( ${+commands[peco]} )); then
   function switch() {
-    gbr -a | peco | xargs git switch	
+    gbr -a | peco | sed "s/remotes\/origin\///" | xargs git switch
   }
-  zle -N peco-go-to-dir
+  zle -N switch
   bindkey '^h' switch
 fi
 
