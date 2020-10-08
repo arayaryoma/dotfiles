@@ -132,7 +132,7 @@ if (( ${+commands[peco]} )); then
     gbr -a | peco | sed "s/remotes\/origin\///" | xargs git switch
   }
   zle -N switch
-  bindkey '^h' switch
+  bindkey '^g' switch
 fi
 
 if type twty > /dev/null; then
@@ -257,7 +257,7 @@ if (( ${+commands[peco]} )); then
     zle clear-screen
   }
   zle -N peco-go-to-dir
-  bindkey '^g' peco-go-to-dir
+  bindkey '^h' peco-go-to-dir
 fi
 
 # npm command completion script
