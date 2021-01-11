@@ -1,11 +1,12 @@
+fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit compaudit
-compinit -i
+compinit -iu
 source ~/.http.zsh
 source $HOME/.cargo/env
 typeset -g ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE='20'
 
 ### environment variables
-export GOROOT=$HOME/.go
+export GOROOT=/usr/local/go
 export GOPATH=$HOME/dev
 export DEV_ROOT=$HOME/dev
 export PYENV_ROOT="$HOME/.pyenv"
@@ -318,8 +319,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion 
 ###-end-npm-completion-###
-
-fpath=(~/.zsh/completion $fpath)
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"

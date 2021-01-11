@@ -9,3 +9,4 @@ ln -sF ~/dotfiles/.xvimrc ~/.xvimrc
 ln -sF ~/dotfiles/.gitignore_global ~/.gitignore_global
 ln -sF ~/dotfiles/.http.zsh ~/.http.zsh
 ln -sF ~/dotfiles/kitty.conf ~/.config/kitty/kitty.conf
+ln -sF ~/dotfiles/.zsh ~/.zsh
