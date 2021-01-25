@@ -43,7 +43,6 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vim
 export AWS_HOME=$HOME/.aws
-export NODE_ENV=development
 
 # Setup direnv
 if type direnv > /dev/null 2>&1; then
