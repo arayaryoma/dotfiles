@@ -100,6 +100,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('hail2u/vim-css3-syntax')
   call dein#add('vim-syntastic/syntastic')
   call dein#add('wavded/vim-stylus')
+  call dein#add('jremmen/vim-ripgrep')
 
   " Required:
   call dein#end()
@@ -168,3 +169,5 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+let g:rg_command = 'rg --vimgrep -S'
