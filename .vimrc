@@ -126,6 +126,10 @@ if dein#load_state('~/.cache/dein')
   " https://github.com/jremmen/vim-ripgrep
   call dein#add('jremmen/vim-ripgrep')
 
+  " A Vim plugin for Prettier 
+  " https://github.com/prettier/vim-prettier
+  call dein#add('prettier/vim-prettier', {'build': 'yarn install'})
+
   " Required:
   call dein#end()
   call dein#save_state()
@@ -166,17 +170,19 @@ autocmd FileType go :match goErr /\<err\>/
 
 " Javascript -------------------------
 map <c-f> :call JsBeautify()<cr>
-autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+autocmd FileType javascript noremap <buffer>  <c-f> :Prettier<cr>
 " for json
-autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
+autocmd FileType json noremap <buffer> <c-f> :Prettier<cr>
+" for ts
+autocmd FileType ts noremap <buffer> <c-f> :Prettier<cr>
+" for tsx
+autocmd FileType tsx noremap <buffer> <c-f> :Prettier<cr>
 " for jsx
-autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
+autocmd FileType jsx noremap <buffer> <c-f> :Prettier<cr>
 " for html
-autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-" for php
-autocmd FileType php noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+autocmd FileType html noremap <buffer> <c-f> :Prettier<cr>
 " for css or scss
-autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+autocmd FileType css noremap <buffer> <c-f> :Prettier<cr>
 
 augroup VimCSS3Syntax
   autocmd!
