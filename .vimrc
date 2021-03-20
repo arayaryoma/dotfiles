@@ -71,35 +71,59 @@ if dein#load_state('~/.cache/dein')
   " Required:
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
-  " Add or remove your plugins here like this:
+  " The Neosnippet plug-In adds snippet support to Vim.
+  " https://github.com/Shougo/neosnippet.vim
   call dein#add('Shougo/neosnippet.vim')
+
+  " The standard snippets repository for neosnippet 
   call dein#add('Shougo/neosnippet-snippets')
+
+  " Next generation completion framework after neocomplcache
+  " https://github.com/Shougo/neocomplete.vim
   call dein#add('Shougo/neocomplete')
-  call dein#add('scrooloose/syntastic')
-  call dein#add('rizzatti/dash.vim')
+
+  " A tree explorer plugin for vim. 
+  " https://github.com/preservim/nerdtree
   call dein#add('scrooloose/nerdtree')
+
+  " emmet for vim: http://emmet.io/
+  " https://github.com/mattn/emmet-vim
   call dein#add('mattn/emmet-vim')
-  call dein#add('leafgarland/typescript-vim')
+
+  " Go development plugin for Vim 
+  " https://github.com/fatih/vim-go
   call dein#add('fatih/vim-go')
-  call dein#add('Quramy/vim-js-pretty-template')
-  call dein#add('Quramy/tsuquyomi')
+
+  " Interactive command execution in Vim.
+  " https://github.com/Shougo/vimproc.vim
   call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
-  call dein#add('magarcia/vim-angular2-snippets')
+
+  " EditorConfig plugin for Vim
+  " https://github.com/editorconfig/editorconfig-vim
   call dein#add('editorconfig/editorconfig-vim')
-  call dein#add('digitaltoad/vim-pug')
+
+  " A vim plugin to display the indention levels with thin vertical lines
+  " https://github.com/Yggdroot/indentLine
   call dein#add('Yggdroot/indentLine')
-  call dein#add('majutsushi/tagbar')
+
+  " fugitive.vim: A Git wrapper so awesome, it should be illegal 
+  " https://github.com/tpope/vim-fugitive
   call dein#add('tpope/vim-fugitive')
-  call dein#add('maksimr/vim-jsbeautify')
-  call dein#add('elzr/vim-json')
-  call dein#add('lumiliet/vim-twig')
-  call dein#add('jwalton512/vim-blade')
+
+  " Vastly improved Javascript indentation and syntax support in Vim. 
+  " https://github.com/pangloss/vim-javascript
   call dein#add('pangloss/vim-javascript')
-  call dein#add('moll/vim-node')
-  call dein#add('othree/csscomplete.vim')
+
+  " CSS3 syntax (and syntax defined in some foreign specifications) support for Vim's built-in syntax/css.vim 
+  " https://github.com/hail2u/vim-css3-syntax
   call dein#add('hail2u/vim-css3-syntax')
+
+  " Syntax checking hacks for vim 
+  " https://github.com/vim-syntastic/syntastic
   call dein#add('vim-syntastic/syntastic')
-  call dein#add('wavded/vim-stylus')
+
+  " Use RipGrep in Vim and display results in a quickfix list 
+  " https://github.com/jremmen/vim-ripgrep
   call dein#add('jremmen/vim-ripgrep')
 
   " Required:
