@@ -125,6 +125,8 @@ alias "adb restart"="adb kill-server && adb start-server"
 alias rn-debug-menu="adb shell input keyevent 82"
 alias tcp-ports="lsof -iTCP -nP -sTCP:LISTEN"
 alias y="yarn"
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+alias chromecanary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
 # required: https://www.npmjs.com/package/http-server
 alias homura="hs --ssl --cert $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/cert.pem --key $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/privkey.pem"
 if (( ${+commands[peco]} )); then
