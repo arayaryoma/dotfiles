@@ -130,6 +130,9 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias chromecanary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
 # required: https://www.npmjs.com/package/http-server
 alias homura="hs --ssl --cert $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/cert.pem --key $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/privkey.pem"
+function openrepo() {
+  gh repo view --web --branch="$(git branch --show-current)"
+}
 if (( ${+commands[peco]} )); then
   function switch() {
     gbr -a | peco | sed "s/remotes\/origin\///" | xargs git switch
