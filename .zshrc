@@ -86,6 +86,7 @@ fi
 
 # aliases
 alias "docker-run"="/Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
+alias openrepo="gh repo view --web --branch=\"$(git branch --show-current)\""
 alias dps="docker ps"
 alias drm="docker rm"
 alias drmi="docker rmi"
