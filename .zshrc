@@ -39,6 +39,7 @@ export PATH=$DEV_ROOT/src/github.com/flutter/flutter/bin:$PATH
 export PATH=$HOME/.config/yarn/global/node_modules/.bin:$PATH
 export PATH=$HOME/.deno/bin:$PATH 
 export PATH=$HOME/.local/bin:$PATH
+export PATH=/usr/local/opt/grep/libexec/gnubin:$PATH
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vim
@@ -347,10 +348,10 @@ fi
 # 
 # zplug load --verbose
 
+source ~/.yarn-completion/yarn-completion.plugin.zsh
+
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/araya/dev/src/github.com/HematiteCorp/sakigake-api/y/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/araya/dev/src/github.com/HematiteCorp/sakigake-api/y/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/ryomaabe/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ryomaabe/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/araya/dev/src/github.com/HematiteCorp/sakigake-api/y/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/araya/dev/src/github.com/HematiteCorp/sakigake-api/y/google-cloud-sdk/completion.zsh.inc'; fi
-
-source ~/.yarn-completion/yarn-completion.plugin.zsh
+if [ -f '/Users/ryomaabe/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ryomaabe/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
