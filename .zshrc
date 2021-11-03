@@ -348,7 +348,7 @@ fi
 # 
 # zplug load --verbose
 
-source ~/.yarn-completion/yarn-completion.plugin.zsh
+source ./yarn-completion.plugin.zsh
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/ryomaabe/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ryomaabe/Downloads/google-cloud-sdk/path.zsh.inc'; fi
