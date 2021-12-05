@@ -130,6 +130,11 @@ if dein#load_state('~/.cache/dein')
   " https://github.com/prettier/vim-prettier
   call dein#add('prettier/vim-prettier', {'build': 'yarn install'})
 
+  " Nodejs extension host for vim & neovim, load extensions like VSCode and
+  " host language servers.
+  " https://github.com/neoclide/coc.nvim
+  call dein#add('neoclide/coc.nvim', { 'merged': 0, 'rev': 'release' })
+
   " Required:
   call dein#end()
   call dein#save_state()
@@ -191,6 +196,7 @@ augroup VimCSS3Syntax
 augroup END
 
 " syntastic config
+set statusline^=%{coc#status()})}
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
