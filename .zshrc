@@ -40,6 +40,7 @@ export PATH=$HOME/.config/yarn/global/node_modules/.bin:$PATH
 export PATH=$HOME/.deno/bin:$PATH 
 export PATH=$HOME/.local/bin:$PATH
 export PATH=/usr/local/opt/grep/libexec/gnubin:$PATH
+export PATH=$DEV_ROOT/src/chromium.googlesource.com/chromium/tools/depot_tools:$PATH
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vim
