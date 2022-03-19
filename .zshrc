@@ -90,9 +90,9 @@ fi
 if type fastly > /dev/null 2>&1; then
   eval "$(fastly --completion-script-zsh)"
 fi
+
 # aliases
 alias "docker-run"="/Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
-alias openrepo="gh repo view --web --branch=\"$(git branch --show-current)\""
 alias dps="docker ps"
 alias drm="docker rm"
 alias drmi="docker rmi"
@@ -138,7 +138,8 @@ alias chromecanary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Goog
 # required: https://www.npmjs.com/package/http-server
 alias homura="hs --ssl --cert $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/cert.pem --key $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/privkey.pem"
 function openrepo() {
-  gh repo view --web --branch="$(git branch --show-current)"
+  branch=$(git branch --show-current)
+  gh repo view --web --branch=$branch
 }
 if (( ${+commands[peco]} )); then
   function switch() {
