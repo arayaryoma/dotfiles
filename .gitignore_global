@@ -3,5 +3,4 @@
 .DS_Store
 node_modules
 dist
-.vscode
 .araya_env
