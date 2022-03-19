@@ -86,6 +86,10 @@ if type rbenv > /dev/null 2>&1; then
   eval "$(rbenv init -)"
 fi
 
+# Setup Fastly CLI auto completion
+if type fastly > /dev/null 2>&1; then
+  eval "$(fastly --completion-script-zsh)"
+fi
 # aliases
 alias "docker-run"="/Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
 alias openrepo="gh repo view --web --branch=\"$(git branch --show-current)\""
