@@ -135,6 +135,9 @@ alias tcp-ports="lsof -iTCP -nP -sTCP:LISTEN"
 alias y="yarn"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias chromecanary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
+alias myip='dig @resolver1.opendns.com myip.opendns.com +short' 
+alias myip4='dig @resolver1.opendns.com myip.opendns.com +short -4'
+alias myip6='dig @resolver1.ipv6-sandbox.opendns.com AAAA myip.opendns.com +short -6'
 # required: https://www.npmjs.com/package/http-server
 alias homura="hs --ssl --cert $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/cert.pem --key $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/privkey.pem"
 function openrepo() {
