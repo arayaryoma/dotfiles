@@ -24,3 +24,6 @@ curl https://raw.githubusercontent.com/arayaryoma/golang-tools-install-script/ma
 ## Setup recentdirs cache
 mkdir -p $HOME/.cache/shell
 touch $HOME/.cache/shell/chpwd-recentdirs
+
+# Install Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
