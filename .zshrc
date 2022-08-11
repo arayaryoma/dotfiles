@@ -6,7 +6,7 @@ source $HOME/.cargo/env
 typeset -g ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE='20'
 
 ### environment variables
-export GOROOT=/usr/local/go
+export GOROOT=$HOME/.go
 export GOPATH=$HOME/dev
 export DEV_ROOT=$HOME/dev
 export PYENV_ROOT="$HOME/.pyenv"
