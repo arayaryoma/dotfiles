@@ -19,7 +19,7 @@ vim +"call dein#install()" +qall
 # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 
 ## Setup go
-curl https://raw.githubusercontent.com/arayaryoma/golang-tools-install-script/master/goinstall.sh | bash -s -- --version 1.14.1
+curl https://raw.githubusercontent.com/arayaryoma/golang-tools-install-script/master/goinstall.sh | bash -s -- --version 1.18.5
 
 ## Setup recentdirs cache
 mkdir -p $HOME/.cache/shell
