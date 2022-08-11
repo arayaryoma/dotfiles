@@ -16,6 +16,7 @@ export PATH=/usr/bin:$PATH
 export PATH=/usr/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
+export PATH=/opt/homebrew/bin:$PATH
 export PATH=/usr/local/var/pyenv/shims:$PATH
 export PATH=/usr/local/share/git-core/contrib/diff-highlight:$PATH
 export PATH=$PYENV_ROOT/bin:$PATH
