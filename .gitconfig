@@ -1,11 +1,20 @@
 [user]
-	emai = r1o.ryoma.abe@gmail.com
-	name = arayaryoma
-	email = r1o.ryoma.abe@gmail.com
+	email = 'araya@araya.dev'
+	name = 'araya'
+
+[includeIf "gitdir:~/dev/src/github.com/Nikkei/**"]
+	path = .gitconfig-nikkei
+[includeIf "gitdir:~/dev/src/github.com/Nikkei/**"]
+	path = .gitconfig-nikkei
+
 [core]
-	excludesFile = /Users/araya/.gitignore_global
+	excludesFile = ./.gitignore_global
 [commit]
 	verbose = true
 
 [ghq]
-root = /Users/araya/dev/src
+root = /Users/ryomaabe/dev/src
+[pull]
+	rebase = true
+[init]
+	defaultBranch = main
