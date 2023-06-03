@@ -139,6 +139,7 @@ alias chromecanary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Goog
 alias myip='dig @resolver1.opendns.com myip.opendns.com +short' 
 alias myip4='dig @resolver1.opendns.com myip.opendns.com +short -4'
 alias myip6='dig @resolver1.ipv6-sandbox.opendns.com AAAA myip.opendns.com +short -6'
+
 # required: https://www.npmjs.com/package/http-server
 alias homura="hs --ssl --cert $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/cert.pem --key $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/privkey.pem"
 function openrepo() {
@@ -369,3 +370,7 @@ if [ -f '/Users/ryomaabe/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then 
 
 export PNPM_HOME="/Users/ryomaabe/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
+
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
