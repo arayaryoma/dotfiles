@@ -1,14 +1,19 @@
 #!/bin/zsh
-ln -sF ~/dotfiles/.vimrc ~/.vimrc
-ln -sF ~/dotfiles/.zshrc ~/.zshrc
-ln -sF ~/dotfiles/.tmux.conf ~/.tmux.conf
-ln -sF ~/dotfiles/.viminfo ~/.viminfo
+
 ln -sF ~/dotfiles/.dir_colors ~/.dir_colors
-ln -sF ~/dotfiles/.ideavimrc ~/.ideavimrc
-ln -sF ~/dotfiles/.xvimrc ~/.xvimrc
+ln -sF ~/dotfiles/.gitconfig ~/.gitconfig
+ln -sF ~/dotfiles/.gitconfig-nikkei ~/.gitconfig-nikkei
 ln -sF ~/dotfiles/.gitignore_global ~/.gitignore_global
 ln -sF ~/dotfiles/.http.zsh ~/.http.zsh
+ln -sF ~/dotfiles/.ideavimrc ~/.ideavimrc
+ln -sF ~/dotfiles/.tigrc ~/.tigrc
+ln -sF ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -sF ~/dotfiles/.viminfo ~/.viminfo
+ln -sF ~/dotfiles/.vimrc ~/.vimrc
+ln -sF ~/dotfiles/.xvimrc ~/.xvimrc
+ln -sF ~/dotfiles/.zshrc ~/.zshrc
 ln -sF ~/dotfiles/kitty.conf ~/.config/kitty/kitty.conf
 ln -sF ~/dotfiles/.zsh ~/.zsh
-ln -sF ~/dotfiles/.tigrc ~/.tigrc
 ln -sF ~/dotfiles/yarn-completion.plugin.zsh ~/yarn-completion.plugin.zsh
+
+#ln -sF ~/dotfiles/ ~/
