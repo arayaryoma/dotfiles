@@ -45,3 +45,11 @@ softwareupdate --install-rosetta
 
 # Setup Node.js
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+
+# Install Docker
+if ! command -v docker 1>/dev/null 2>&1; then
+  curl -O https://desktop.docker.com/mac/main/arm64/Docker.dmg --output-dir /tmp
+  sudo hdiutil attach /tmp/Docker.dmg
+  sudo /Volumes/Docker/Docker.app/Contents/MacOS/install
+  sudo hdiutil detach /Volumes/Docker
+fi
