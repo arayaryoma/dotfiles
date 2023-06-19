@@ -18,7 +18,8 @@ brew install \
   	peco \
   	ghq \
 	git \
-  	tig
+  	tig \
+	java
 
 brew tap tkengo/highway && brew install highway
 
@@ -76,3 +77,4 @@ if ! command -v gcloud 1>/dev/null 2>&1; then
   /tmp/google-cloud-sdk/install.sh --usage-reporting=false --command-completion=false --path-update=false --quiet
   sudo mv -f /tmp/google-cloud-sdk /usr/local/google-cloud-sdk
 fi
+

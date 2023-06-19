@@ -31,7 +31,7 @@ export PATH=/usr/local/idea/bin:$PATH
 export PATH=/usr/local/google-cloud-sdk/bin:$PATH
 export PATH=/usr/local/go_appengine:$PATH
 export PATH=/usr/local/rbenv/bin:$PATH
-export PATH=/usr/local/java/jdk-9.0.1/bin:$PATH
+export PATH=/opt/homebrew/opt/openjdk/bin:$PATH
 export PATH=/usr/local/Postman:$PATH
 export PATH=$HOME/.npm-global/bin:$PATH
 export PATH="$HOME/.yarn/bin:$PATH"
@@ -46,6 +46,8 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vim
 export AWS_HOME=$HOME/.aws
+
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 
 # Setup direnv
 if type direnv > /dev/null 2>&1; then
