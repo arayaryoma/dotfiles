@@ -66,3 +66,13 @@ if ! command -v docker 1>/dev/null 2>&1; then
   sudo /Volumes/Docker/Docker.app/Contents/MacOS/install
   sudo hdiutil detach /Volumes/Docker
 fi
+
+# Install gcloud
+if ! command -v gcloud 1>/dev/null 2>&1; then
+  GCLOUD_VERSION=435.0.1-darwin-x86_64
+  GCLOUD_TAR_FILENAME=google-cloud-cli-$GCLOUD_VERSION.tar.gz
+  curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/$GCLOUD_TAR_FILENAME --output-dir /tmp
+  tar -xzf /tmp/$GCLOUD_TAR_FILENAME -C /tmp
+  /tmp/google-cloud-sdk/install.sh --usage-reporting=false --command-completion=false --path-update=false --quiet
+  sudo mv -f /tmp/google-cloud-sdk /usr/local/google-cloud-sdk
+fi
