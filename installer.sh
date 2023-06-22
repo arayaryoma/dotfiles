@@ -19,7 +19,8 @@ brew install \
   	ghq \
 	git \
   	tig \
-	java
+	java \
+ 	gnu-sed
 
 brew tap tkengo/highway && brew install highway
 
