@@ -3,6 +3,7 @@ if !isdirectory(&dir) | call mkdir(&dir, 'p', 0700) | endif
 
 " Visible quotations in json file
 let g:vim_json_syntax_conceal=0
+let g:indentLine_setConceal = 0
 
 " encoding conig
 set encoding=utf-8
