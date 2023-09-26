@@ -370,7 +370,7 @@ if [ -f '/Users/ryomaabe/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Us
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/ryomaabe/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ryomaabe/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
-export PNPM_HOME="/Users/ryomaabe/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
 # tabtab source for packages
