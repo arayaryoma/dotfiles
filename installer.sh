@@ -42,7 +42,7 @@ fi
 
 ## Setup go
 if ! command -v go 1>/dev/null 2>&1; then
-  curl https://raw.githubusercontent.com/arayaryoma/golang-tools-install-script/master/goinstall.sh | bash -s -- --version 1.20.5
+  curl https://raw.githubusercontent.com/arayaryoma/golang-tools-install-script/master/goinstall.sh | bash -s -- --version 1.23.0
 fi
 
 ## Setup recentdirs cache
