@@ -13,7 +13,7 @@
 	verbose = true
 
 [ghq]
-root = /Users/ryomaabe/dev/src
+root = /Users/araya/dev/src
 [pull]
 	rebase = true
 [init]
