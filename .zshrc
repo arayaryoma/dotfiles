@@ -141,6 +141,9 @@ alias chromecanary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Goog
 alias myip='dig @resolver1.opendns.com myip.opendns.com +short' 
 alias myip4='dig @resolver1.opendns.com myip.opendns.com +short -4'
 alias myip6='dig @resolver1.ipv6-sandbox.opendns.com AAAA myip.opendns.com +short -6'
+# workaround for bug when using peco + kitty
+# https://github.com/peco/peco/issues/535#issuecomment-1159378680
+alias peco='TERMINFO="" peco'
 
 # required: https://www.npmjs.com/package/http-server
 alias homura="hs --ssl --cert $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/cert.pem --key $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/privkey.pem"
