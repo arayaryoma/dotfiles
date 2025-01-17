@@ -177,8 +177,12 @@ function asp {
 function lo {
     open "http://localhost:$1"
 }
-function base64 {
+function opensslbase64 {
   openssl base64 -in $1 -out $2
+}
+
+function atob {
+  echo $1 | /usr/bin/base64 -D
 }
 
 function do_enter() {
