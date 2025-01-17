@@ -21,9 +21,12 @@ brew install \
   	tig \
 	java \
  	gnu-sed \
-	gh
+	gh \
+	direnv\
+	pyenv
 
 brew tap tkengo/highway && brew install highway
+brew tap hashicorp/tap && brew install hashicorp/tap/terraform
 
 # Setup Vim with plugins
 DEIN_DIR="$HOME/.cache/dein"
