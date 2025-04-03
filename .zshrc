@@ -148,8 +148,6 @@ alias myip6='dig @resolver1.ipv6-sandbox.opendns.com AAAA myip.opendns.com +shor
 alias peco='TERMINFO="" peco'
 alias c="cursor"
 
-# required: https://www.npmjs.com/package/http-server
-alias homura="hs --ssl --cert $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/cert.pem --key $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/privkey.pem"
 function openrepo() {
   branch=$(git branch --show-current)
   gh repo view --web --branch=$branch
