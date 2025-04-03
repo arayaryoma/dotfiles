@@ -146,6 +146,7 @@ alias myip6='dig @resolver1.ipv6-sandbox.opendns.com AAAA myip.opendns.com +shor
 # workaround for bug when using peco + kitty
 # https://github.com/peco/peco/issues/535#issuecomment-1159378680
 alias peco='TERMINFO="" peco'
+alias c="cursor"
 
 # required: https://www.npmjs.com/package/http-server
 alias homura="hs --ssl --cert $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/cert.pem --key $DEV_ROOT/src/github.com/arayaryoma/certificates/homura.dev/live/homura.dev/privkey.pem"
