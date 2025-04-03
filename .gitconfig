@@ -8,12 +8,12 @@
 	path = .gitconfig-nikkei
 
 [core]
-	excludesFile = ./.gitignore_global
+	excludesfile = ~/.gitignore_global
 [commit]
 	verbose = true
 
 [ghq]
-root = /Users/araya/dev/src
+root = ~/dev/src
 [pull]
 	rebase = true
 [init]
