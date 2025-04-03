@@ -5,3 +5,4 @@ node_modules
 dist
 .araya_env
 *.code-workspace
+.cursor
