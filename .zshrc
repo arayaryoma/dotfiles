@@ -386,3 +386,23 @@ export PATH="$PNPM_HOME:$PATH"
 # tabtab source for packages
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
+
+# Auto detect package manager by lockfile
+ni() {
+  if [[ -f "pnpm-lock.yaml" ]]; then
+    echo "Detected pnpm, running 'pnpm install'"
+    pnpm install
+  elif [[ -f "yarn.lock" ]]; then
+    echo "Detected Yarn, running 'yarn install'"
+    yarn install
+  elif [[ -f "package-lock.json" ]]; then
+    echo "Detected npm, running 'npm install'"
+    npm install
+  elif [[ -f "bun.lockb" || -f "bun.lock" ]]; then
+    echo "Detected Bun, running 'bun install'"
+    bun install
+  else
+    echo "No lockfile detected, defaulting to 'npm install'"
+    npm install
+  fi
+}
