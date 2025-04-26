@@ -102,7 +102,7 @@ alias dps="docker ps"
 alias drm="docker rm"
 alias drmi="docker rmi"
 alias dkill="docker kill"
-alias dc="docker-compose"
+alias dc="docker compose"
 alias drm-all-processes="docker ps -aq | xargs docker kill && docker ps -a -q | xargs docker rm"
 alias drmi-upgraded-images='docker rmi $(docker images --all | grep "^<none>" | awk "{print $3}")'
 alias zshrc="vim ~/.zshrc"
@@ -128,6 +128,7 @@ alias gme="git merge"
 alias gpsh="git push"
 alias gpsht="git push && git push --tags"
 alias gpo="git symbolic-ref --short -q HEAD | xargs git push -u origin"
+alias gpf="git symbolic-ref --short -q HEAD | xargs git push -u fork"
 alias grh="git reset HEAD"
 alias gash="git stash"
 alias gst="git status -sb"
@@ -146,6 +147,7 @@ alias myip6='dig @resolver1.ipv6-sandbox.opendns.com AAAA myip.opendns.com +shor
 # workaround for bug when using peco + kitty
 # https://github.com/peco/peco/issues/535#issuecomment-1159378680
 alias peco='TERMINFO="" peco'
+alias fix-peco="TERMINFO="
 alias c="cursor"
 
 function openrepo() {
@@ -404,3 +406,20 @@ ni() {
     npm install
   fi
 }
+
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# proto
+export PROTO_HOME="$HOME/.proto"
+export PATH="$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH"
+
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
