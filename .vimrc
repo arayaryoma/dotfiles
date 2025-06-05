@@ -42,6 +42,9 @@ nnoremap <C-n> :cn<CR>
 nnoremap <C-m> :cN<CR>
 nnoremap <F8> :TagbarToggle<CR>
 
+nnoremap d "_d
+vnoremap d "_d
+
 """ Aliases in insert mode
 "inoremap uu <Esc>
 "inoremap jj <Esc> 
