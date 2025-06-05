@@ -36,7 +36,7 @@ vnoremap v $h
 
 
 """ Aliases in normal mode
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
+nnoremap <C-e> :NERDTreeToggle<CR>
 nnoremap <silent><C-i> :Dash<CR>
 nnoremap <C-n> :cn<CR>
 nnoremap <C-m> :cN<CR>
@@ -65,10 +65,12 @@ syntax enable
 " NERD Tree configure-------------------------
 " Show hidden file(i.e. dotfiles)
 let NERDTreeShowHidden=1
-function NERDTreeWinSize(arg)
-  let g:NERDTreeWinSize=a:arg
-endfunction
-command! -nargs=* Ntws call NERDTreeWinSize( '<args>' ) | NERDTree
+
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
+
+" show lines of files
+let g:NERDTreeFileLines = 1
 
 " End of NERD Tree configure -------------------------
 
@@ -92,10 +94,6 @@ augroup VimCSS3Syntax
 augroup END
 
 " syntastic config
-set statusline^=%{coc#status()})}
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
