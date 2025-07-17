@@ -426,3 +426,5 @@ export PATH="$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+source $HOME/dotfiles/op-completion.zsh
