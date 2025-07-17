@@ -44,6 +44,7 @@ export PATH=/usr/local/opt/grep/libexec/gnubin:$PATH
 export PATH=$DEV_ROOT/src/chromium.googlesource.com/chromium/tools/depot_tools:$PATH
 export PATH=$HOME/.bun/bin:$PATH
 export PATH=/Applications/Docker.app/Contents/Resources/bin:$PATH
+export PATH=$HOME/.claude/local:$PATH
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vim
@@ -149,6 +150,7 @@ alias myip6='dig @resolver1.ipv6-sandbox.opendns.com AAAA myip.opendns.com +shor
 alias peco='TERMINFO="" peco'
 alias fix-peco="TERMINFO="
 alias c="cursor"
+alias claude="$HOME/.claude/local/claude"
 
 function openrepo() {
   branch=$(git branch --show-current)
