@@ -6,3 +6,4 @@ dist
 .araya_env
 *.code-workspace
 .cursor
+.claude/settings.local.json
