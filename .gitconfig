@@ -11,6 +11,7 @@
 	excludesfile = ~/.gitignore_global
 [commit]
 	verbose = true
+	gpgsign = true
 
 [ghq]
 root = ~/dev/src
