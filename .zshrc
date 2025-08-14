@@ -151,7 +151,7 @@ alias peco='TERMINFO="" peco'
 alias fix-peco="TERMINFO="
 alias c="cursor"
 alias claude="$HOME/.claude/local/claude"
-alias review="npx difit@latest"
+alias review="NODE_ENV=production npx difit@latest"
 
 function openrepo() {
   branch=$(git branch --show-current)
