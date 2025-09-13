@@ -1,6 +1,16 @@
 [user]
 	email = 'araya@araya.dev'
 	name = 'araya'
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOuLBIwP7jX6Jh8SkK8uiq6HOgMC+1Inxf57U3dNDIhm
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+  gpgsign = true
 
 [includeIf "gitdir:~/dev/src/github.com/Nikkei/**"]
 	path = .gitconfig-nikkei
@@ -19,3 +29,4 @@ root = ~/dev/src
 	rebase = true
 [init]
 	defaultBranch = main
+
