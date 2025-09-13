@@ -126,7 +126,7 @@ alias amend="gco --amend"
 alias gdif="git diff"
 alias glog="git log --oneline --graph --decorate --all"
 alias gme="git merge"
-alias gpsh="git push"
+alias gpsh='f() { remote=$(git remote | grep "^fork$" >/dev/null && echo fork || echo origin); echo "Pushing to $remote"; git push "$@" $remote; }; f'
 alias gpsht="git push && git push --tags"
 alias gpo="git symbolic-ref --short -q HEAD | xargs git push -u origin"
 alias gpf="git symbolic-ref --short -q HEAD | xargs git push -u fork"
