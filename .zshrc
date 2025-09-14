@@ -427,4 +427,6 @@ export PATH="$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# 1password CLI
 source $HOME/dotfiles/op-completion.zsh
+source $HOME/.config/op/plugins.sh
