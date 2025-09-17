@@ -152,6 +152,7 @@ alias fix-peco="TERMINFO="
 alias c="cursor"
 alias claude="$HOME/.claude/local/claude"
 alias review="NODE_ENV=production npx difit@latest"
+alias ansi_colors="$HOME/ansi_colors.sh"
 
 function openrepo() {
   branch=$(git branch --show-current)
