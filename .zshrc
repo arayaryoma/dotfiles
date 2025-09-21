@@ -150,7 +150,6 @@ alias myip6='dig @resolver1.ipv6-sandbox.opendns.com AAAA myip.opendns.com +shor
 alias peco='TERMINFO="" peco'
 alias fix-peco="TERMINFO="
 alias c="cursor"
-alias claude="$HOME/.claude/local/claude"
 alias review="NODE_ENV=production npx difit@latest"
 alias ansi_colors="$HOME/ansi_colors.sh"
 
