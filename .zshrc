@@ -430,3 +430,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # 1password CLI
 source $HOME/dotfiles/op-completion.zsh
 source $HOME/.config/op/plugins.sh
+
+# Enable aws cli completion
+complete -C '/usr/local/bin/aws_completer' aws
