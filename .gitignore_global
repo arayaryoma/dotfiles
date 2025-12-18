@@ -8,3 +8,4 @@ dist
 .cursor
 .claude/settings.local.json
 .tmp
+*.tmp
