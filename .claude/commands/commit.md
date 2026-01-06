@@ -4,3 +4,4 @@ Execute `git commit` following these rules:
 - If a single commit spans multiple contexts, stage only the necessary files with `git add` and split the commit.
 - Do not use emojis.
 - If the changes are known to resolve a GitHub issue, include the issue number in the commit message body.
+- After creating a commit message, ask the user to confirm the full text before proceeding.
