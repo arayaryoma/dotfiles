@@ -118,7 +118,7 @@ if [[ "$ASSUME_YES" -ne 1 ]]; then
   esac
 fi
 
-if ! git rebase --exec 'git commit --amend --no-edit -S' "$UPSTREAM_REF"; then
+if ! git rebase --exec 'git commit --amend --no-edit --signoff -S' "$UPSTREAM_REF"; then
   cat <<'EOF' >&2
 error: rebase failed.
 Resolve conflicts or signing errors, then continue with:
