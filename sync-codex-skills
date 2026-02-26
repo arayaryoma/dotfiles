@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SOURCE_DIR="${HOME}/dotfiles/.agents/skills"
+TARGET_DIR="${HOME}/.codex/skills"
+DRY_RUN=0
+
+usage() {
+  cat <<'EOF'
+Usage:
+  sync-codex-skills [--source <dir>] [--target <dir>] [--dry-run]
+
+Default:
+  --source "$HOME/dotfiles/.agents/skills"
+  --target "$HOME/.codex/skills"
+
+Behavior:
+  For each entry in source, ensure target/<name> is a symlink to source/<name>.
+  Existing target entries with the same name are replaced.
+EOF
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --source)
+      SOURCE_DIR="$2"
+      shift 2
+      ;;
+    --target)
+      TARGET_DIR="$2"
+      shift 2
+      ;;
+    --dry-run)
+      DRY_RUN=1
+      shift
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *)
+      echo "Unknown option: $1" >&2
+      usage >&2
+      exit 1
+      ;;
+  esac
+done
+
+if [[ ! -d "$SOURCE_DIR" ]]; then
+  echo "Source directory not found: $SOURCE_DIR" >&2
+  exit 1
+fi
+
+mkdir -p "$TARGET_DIR"
+
+shopt -s nullglob dotglob
+
+for src in "$SOURCE_DIR"/*; do
+  name="$(basename "$src")"
+  dst="$TARGET_DIR/$name"
+
+  if [[ -L "$dst" ]] && [[ "$(readlink "$dst")" == "$src" ]]; then
+    echo "skip: $dst -> $src"
+    continue
+  fi
+
+  if [[ "$DRY_RUN" -eq 1 ]]; then
+    if [[ -e "$dst" || -L "$dst" ]]; then
+      echo "replace: $dst"
+    fi
+    echo "link: $dst -> $src"
+    continue
+  fi
+
+  if [[ -e "$dst" || -L "$dst" ]]; then
+    rm -rf "$dst"
+  fi
+
+  ln -s "$src" "$dst"
+  echo "linked: $dst -> $src"
+done
+
