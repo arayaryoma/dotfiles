@@ -1,4 +1,4 @@
 interface:
   display_name: "Re-sign Before Push"
   short_description: "Re-sign local commits before push"
-  default_prompt: "Detect unsigned local commits and rewrite them as signed commits before pushing."
+  default_prompt: "Rewrite all local unpushed commits with signed amend before pushing."

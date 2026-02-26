@@ -19,9 +19,8 @@ Options:
 
 Behavior:
   - Inspect local-only commits in <upstream>..HEAD
-  - Detect commits with no signature (%G? == N)
-  - Rebase from the parent of the first unsigned commit
-  - During rebase, amend unsigned commits with `git commit --amend --no-edit -S`
+  - Rebase from <upstream>
+  - During rebase, amend every local commit with `git commit --amend --no-edit -S`
 EOF
 }
 
@@ -90,33 +89,16 @@ if [[ "$MERGE_COUNT" -gt 0 ]]; then
   exit 1
 fi
 
-mapfile -t UNSIGNED_COMMITS < <(
-  while IFS= read -r sha; do
-    if [[ "$(git show -s --format=%G? "$sha")" == "N" ]]; then
-      echo "$sha"
-    fi
-  done < <(git rev-list --reverse "$RANGE")
-)
+mapfile -t LOCAL_COMMITS < <(git rev-list --reverse "$RANGE")
 
-if [[ "${#UNSIGNED_COMMITS[@]}" -eq 0 ]]; then
-  echo "All local commits in $RANGE are already signed."
-  exit 0
-fi
-
-echo "Unsigned commits in $RANGE:"
-for sha in "${UNSIGNED_COMMITS[@]}"; do
+echo "Local commits that will be re-signed in $RANGE:"
+for sha in "${LOCAL_COMMITS[@]}"; do
   git show -s --format='  %h %s' "$sha"
 done
 
-FIRST_UNSIGNED="${UNSIGNED_COMMITS[0]}"
-if ! BASE_COMMIT="$(git rev-parse "${FIRST_UNSIGNED}^" 2>/dev/null)"; then
-  echo "error: failed to resolve parent of first unsigned commit: $FIRST_UNSIGNED" >&2
-  exit 1
-fi
-
 echo
-echo "Rebase base commit: $BASE_COMMIT"
-echo "Unsigned commit count: ${#UNSIGNED_COMMITS[@]}"
+echo "Rebase base commit: $UPSTREAM_REF"
+echo "Commit count to rewrite: ${#LOCAL_COMMITS[@]}"
 
 if [[ "$DRY_RUN" -eq 1 ]]; then
   echo
@@ -125,7 +107,7 @@ if [[ "$DRY_RUN" -eq 1 ]]; then
 fi
 
 if [[ "$ASSUME_YES" -ne 1 ]]; then
-  read -r -p "Rewrite local history to re-sign these commits? [y/N] " response
+  read -r -p "Rewrite local history and re-sign all these commits? [y/N] " response
   case "$response" in
     y|Y|yes|YES)
       ;;
@@ -136,7 +118,7 @@ if [[ "$ASSUME_YES" -ne 1 ]]; then
   esac
 fi
 
-if ! git rebase --exec 'if [ "$(git show -s --format=%G? HEAD)" = "N" ]; then git commit --amend --no-edit -S; fi' "$BASE_COMMIT"; then
+if ! git rebase --exec 'git commit --amend --no-edit -S' "$UPSTREAM_REF"; then
   cat <<'EOF' >&2
 error: rebase failed.
 Resolve conflicts or signing errors, then continue with:
@@ -147,21 +129,9 @@ EOF
   exit 1
 fi
 
-REMAINING_UNSIGNED=0
-while IFS= read -r sha; do
-  if [[ "$(git show -s --format=%G? "$sha")" == "N" ]]; then
-    REMAINING_UNSIGNED=$((REMAINING_UNSIGNED + 1))
-  fi
-done < <(git rev-list --reverse "$RANGE")
-
-if [[ "$REMAINING_UNSIGNED" -gt 0 ]]; then
-  echo "error: $REMAINING_UNSIGNED unsigned commit(s) still remain in $RANGE" >&2
-  exit 1
-fi
-
 echo
-echo "Re-sign completed. Local commits now show signature state:"
-git log --reverse --format='  %h %G? %s' "$RANGE"
+echo "Re-sign completed. Rewritten local commits:"
+git log --reverse --format='  %h %s' "$RANGE"
 echo
 echo "Done. This script does not run git push."
 echo "If needed later, run manually:"
