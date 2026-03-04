@@ -57,7 +57,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [[ "$USE_DEFAULT_TARGETS" -eq 1 ]]; then
-  TARGET_DIRS=("${HOME}/.codex/skills" "${HOME}/.claude/skills")
+  TARGET_DIRS=("${HOME}/.codex/skills" "${HOME}/.claude/skills" "${HOME}/.agents/skills")
 fi
 
 if [[ ! -d "$SOURCE_DIR" ]]; then
