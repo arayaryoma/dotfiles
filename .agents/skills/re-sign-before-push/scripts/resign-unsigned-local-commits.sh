@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-UPSTREAM_REF=""
+UPSTREAM_REF="origin/main"
 DRY_RUN=0
 ASSUME_YES=0
 
@@ -12,14 +12,14 @@ Usage:
   resign-unsigned-local-commits.sh [--upstream <ref>] [--dry-run] [--yes]
 
 Options:
-  --upstream <ref>  Use an explicit upstream ref instead of @{upstream}
+  --upstream <ref>  Use an explicit base ref instead of origin/main
   --dry-run         Print target commits without rewriting history
   --yes             Skip confirmation prompt
   -h, --help        Show this help
 
 Behavior:
-  - Inspect local-only commits in <upstream>..HEAD
-  - Rebase from <upstream>
+  - Inspect local-only commits in <base>..HEAD
+  - Rebase from <base>
   - During rebase, amend every local commit with `git commit --amend --no-edit -S`
 EOF
 }
@@ -64,15 +64,8 @@ if [[ -n "$(git status --porcelain)" ]]; then
   exit 1
 fi
 
-if [[ -z "$UPSTREAM_REF" ]]; then
-  if ! UPSTREAM_REF="$(git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' 2>/dev/null)"; then
-    echo "error: no upstream configured; pass --upstream <ref>" >&2
-    exit 1
-  fi
-fi
-
 if ! git rev-parse --verify "$UPSTREAM_REF" >/dev/null 2>&1; then
-  echo "error: upstream ref not found: $UPSTREAM_REF" >&2
+  echo "error: base ref not found: $UPSTREAM_REF" >&2
   exit 1
 fi
 
