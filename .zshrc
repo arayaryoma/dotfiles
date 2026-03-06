@@ -461,3 +461,6 @@ source $HOME/.config/op/plugins.sh
 
 # Enable aws cli completion
 complete -C '/usr/local/bin/aws_completer' aws
+
+# Set empty to NPM_TOKEN to avoid pnpm completion warning
+export NPM_TOKEN=""
