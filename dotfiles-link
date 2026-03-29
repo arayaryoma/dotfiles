@@ -18,6 +18,7 @@ ln -sF ~/dotfiles/yarn-completion.plugin.zsh ~/yarn-completion.plugin.zsh
 ln -sF ~/dotfiles/ansi_colors.sh ~/ansi_colors.sh
 ln -sF ~/dotfiles/.claude/plugins ~/.claude/plugins
 ln -sF ~/dotfiles/.claude/commands ~/.claude/commands
+ln -sF ~/dotfiles/.peco ~/.peco
 ~/dotfiles/sync-agent-skills
 
 
