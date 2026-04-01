@@ -44,7 +44,6 @@ export PATH=/usr/local/opt/grep/libexec/gnubin:$PATH
 export PATH=$DEV_ROOT/src/chromium.googlesource.com/chromium/tools/depot_tools:$PATH
 export PATH=$HOME/.bun/bin:$PATH
 export PATH=/Applications/Docker.app/Contents/Resources/bin:$PATH
-export PATH=$HOME/.claude/local:$PATH
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vim
