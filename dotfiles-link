@@ -19,6 +19,7 @@ ln -sF ~/dotfiles/ansi_colors.sh ~/ansi_colors.sh
 ln -sF ~/dotfiles/.claude/plugins ~/.claude/plugins
 ln -sF ~/dotfiles/.claude/commands ~/.claude/commands
 ln -sF ~/dotfiles/.peco ~/.peco
+ln -sF ~/dotfiles/ghostty ~/.config/
 ~/dotfiles/sync-agent-skills
 
 
