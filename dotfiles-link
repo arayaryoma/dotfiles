@@ -20,6 +20,8 @@ ln -sF ~/dotfiles/.claude/plugins ~/.claude/plugins
 ln -sF ~/dotfiles/.claude/commands ~/.claude/commands
 ln -sF ~/dotfiles/.peco ~/.peco
 ln -sF ~/dotfiles/ghostty ~/.config/
+mkdir -p ~/.config/cmux
+ln -sF ~/dotfiles/cmux/settings.json ~/.config/cmux/settings.json
 ~/dotfiles/sync-agent-skills
 
 
