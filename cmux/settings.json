@@ -119,6 +119,10 @@
   //     ]
   //   },
 
+  "browser" : {
+    "openTerminalLinksInCmuxBrowser" : false
+  },
+
   "shortcuts" : {
     "bindings" : {
       "focusDown" : ["ctrl+b", "j"],

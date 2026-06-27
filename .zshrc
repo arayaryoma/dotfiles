@@ -150,7 +150,7 @@ alias myip6='dig @resolver1.ipv6-sandbox.opendns.com AAAA myip.opendns.com +shor
 alias peco='TERMINFO="" peco'
 alias fix-peco="TERMINFO="
 alias c="cursor"
-alias review="NODE_ENV=production npx difit@latest"
+alias review="NODE_ENV=production pnpx difit@latest"
 alias ansi_colors="$HOME/ansi_colors.sh"
 
 function openrepo() {
@@ -464,3 +464,5 @@ complete -C '/usr/local/bin/aws_completer' aws
 
 # Set empty to NPM_TOKEN to avoid pnpm completion warning
 export NPM_TOKEN=""
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi

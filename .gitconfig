@@ -32,3 +32,5 @@ root = ~/dev/src
 
 [format]
 	signOff = true
+[coderabbit]
+	machineId = cli/8dc1e4410ac74ee98f16c7c2e799418f
