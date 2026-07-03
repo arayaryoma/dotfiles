@@ -34,4 +34,6 @@ Execute staging and commit as an explicit, multi-step procedure. Do NOT run
   subject. The Step 2 category is only for deciding how to split commits,
   never for the message text.
 - If branch is `master`/`main`, create a branch first with `git switch -c`.
+  - Do NOT prefix the branch name with a type (no `feat/`, `fix/`, etc.).
+  - Do NOT use `/` in the branch name.
 - If a change resolves a GitHub issue, include the issue number in the body.
