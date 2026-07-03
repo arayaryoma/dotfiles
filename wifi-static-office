@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SERVICE="Wi-Fi"
+IP="10.40.41.47"
+SUBNET="255.255.255.0"
+ROUTER="10.40.41.1"
+DNS="10.40.52.4"
+
+if ! networksetup -listallnetworkservices | grep -Fxq "$SERVICE"; then
+  echo "ネットワークサービス '$SERVICE' が見つかりません。" >&2
+  echo "利用可能なサービス:" >&2
+  networksetup -listallnetworkservices >&2
+  exit 1
+fi
+
+echo "Wi-Fi を静的IPに設定します:"
+echo "  Service : $SERVICE"
+echo "  IP      : $IP"
+echo "  Subnet  : $SUBNET"
+echo "  Router  : $ROUTER"
+echo "  DNS     : $DNS"
+echo
+
+sudo networksetup -setmanual "$SERVICE" "$IP" "$SUBNET" "$ROUTER"
+sudo networksetup -setdnsservers "$SERVICE" "$DNS"
+
+echo
+echo "適用後の設定:"
+networksetup -getinfo "$SERVICE"
+echo
+echo "DNS:"
+networksetup -getdnsservers "$SERVICE"

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SERVICE="Wi-Fi"
+
+if ! networksetup -listallnetworkservices | grep -Fxq "$SERVICE"; then
+  echo "ネットワークサービス '$SERVICE' が見つかりません。" >&2
+  echo "利用可能なサービス:" >&2
+  networksetup -listallnetworkservices >&2
+  exit 1
+fi
+
+echo "Wi-Fi を DHCP に戻し、DNS設定をクリアします。"
+echo
+
+sudo networksetup -setdhcp "$SERVICE"
+sudo networksetup -setdnsservers "$SERVICE" empty
+
+echo
+echo "適用後の設定:"
+networksetup -getinfo "$SERVICE"
+echo
+echo "DNS:"
+networksetup -getdnsservers "$SERVICE"
