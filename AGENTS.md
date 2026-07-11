@@ -35,6 +35,11 @@ Before doing exploration or edits, actively check whether delegation would help.
 
 ## Common rules
 
+### Code comments
+
+- Write comments that explain **why** the code needs to do this (Why), not **what** it is doing (What).
+- Do not write comments stating the obvious — anything already readable from the code itself.
+
 ### Language choice for throwaway scripts
 
 - Never use Python for temporary or one-shot scripts.

@@ -19,6 +19,11 @@ These tiers are the default and MUST be applied on every non-trivial task, not t
 
 # Common rules
 
+## Code comments
+
+- Write comments that explain **why** the code needs to do this (Why), not **what** it is doing (What).
+- Do not write comments stating the obvious — anything already readable from the code itself.
+
 ## Language choice for throwaway scripts
 
 - Never use Python for temporary / throwaway (one-shot) scripts.
