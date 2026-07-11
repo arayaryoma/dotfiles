@@ -21,8 +21,11 @@ ln -sF ~/dotfiles/.claude/commands ~/.claude/commands
 ln -sF ~/dotfiles/.peco ~/.peco
 ln -sF ~/dotfiles/ghostty ~/.config/
 ln -sF ~/dotfiles/.claude/CLAUDE.md ~/.claude/CLAUDE.md
-mkdir -p ~/.config/cmux
 ln -sF ~/dotfiles/cmux/settings.json ~/.config/cmux/settings.json
+ln -sF ~/dotfiles/.npmrc ~/.npmrc
+
+mkdir -p ~/.config/cmux
+
 ~/dotfiles/sync-agent-skills
 
 
