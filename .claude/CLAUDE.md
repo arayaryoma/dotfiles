@@ -32,8 +32,17 @@ These tiers are the default and MUST be applied on every non-trivial task, not t
 
 ## Accessing 1Password
 
-- Before running any command that triggers a 1Password approval dialog (e.g. via the `op` command), state in user-facing text what the approval is needed for, immediately before running it.
-- Applies to:
-  - Secret-retrieval / session-start commands such as `op read` / `op item get` / `op signin` / `op run`.
-  - Commands that internally invoke `op run`, or access 1Password during postinstall and thus request approval — such as `pnpm install` or `dev:*` scripts.
-- When performing several retrievals/approvals together, state the purpose of each one, one sentence per item.
+The following commands may trigger a 1Password access (approval dialog). They are enumerated here in advance; append to this list as needed.
+
+- Any command starting with `op` (`op read` / `op item get` / `op signin` / `op run`, etc.).
+- `pnpm install`, and `pnpm *` (including `corepack pnpm ...`). Dependency install / postinstall may fetch a token from 1Password (some setups run an implicit install on any `pnpm` invocation). `dev:` scripts likewise.
+- `git fetch` / `git push` / `git pull` / `git rebase` / `git commit` (auth & signing via the 1Password SSH agent).
+
+These commands are NOT gated by a forced per-command approval. On execution, the `PreToolUse` hook (`~/.claude/hooks/1password-ask-guard.sh`) automatically emits a **prominent notice** ("🔑 1Passwordへのアクセスを求めるコマンドです…").
+
+My (Claude's) responsibility: immediately **before running** any command in the list above, state the **specific purpose** in one sentence, in a prominent form. Example:
+
+> 🔑 **1Passwordへのアクセスを求めます**
+> 目的: <one sentence on what this command needs 1Password access for>
+
+When running several such commands together, write one sentence of purpose per command.
