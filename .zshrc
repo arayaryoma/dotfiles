@@ -462,6 +462,38 @@ source $HOME/.config/op/plugins.sh
 # Enable aws cli completion
 complete -C '/usr/local/bin/aws_completer' aws
 
+# awsp: pick a profile from ~/.aws/config, SSO-login if the cached session is
+# expired, then export AWS_PROFILE so plain `aws` commands use it in this shell.
+awsp() {
+  local config="${AWS_CONFIG_FILE:-$HOME/.aws/config}"
+  [[ -f "$config" ]] || { echo "awsp: $config not found" >&2; return 1 }
+
+  local -a profiles
+  profiles=(${(f)"$(sed -nE 's/^\[profile[[:space:]]+(.+)\]$/\1/p' "$config")"})
+  (( ${#profiles} )) || { echo "awsp: no [profile ...] entries in $config" >&2; return 1 }
+
+  local profile
+  if [[ -n "$1" ]]; then
+    profile="$1"
+    (( ${profiles[(Ie)$profile]} )) || { echo "awsp: '$profile' not in $config" >&2; return 1 }
+  elif command -v peco >/dev/null 2>&1; then
+    profile=$(print -l -- $profiles | TERMINFO="" peco --prompt 'AWS profile>')
+  elif command -v fzf >/dev/null 2>&1; then
+    profile=$(print -l -- $profiles | fzf --prompt 'AWS profile> ')
+  else
+    echo 'Select AWS profile:'
+    select profile in $profiles; do [[ -n "$profile" ]] && break; done
+  fi
+  [[ -n "$profile" ]] || { echo 'awsp: canceled' >&2; return 1 }
+
+  export AWS_PROFILE="$profile"
+  # Reuse the cached SSO session when it is still valid; only log in otherwise.
+  if ! aws sts get-caller-identity >/dev/null 2>&1; then
+    aws sso login --profile "$profile" || { unset AWS_PROFILE; return 1 }
+  fi
+  aws sts get-caller-identity --output table && echo "AWS_PROFILE=$AWS_PROFILE"
+}
+
 # Set empty to NPM_TOKEN to avoid pnpm completion warning
 export NPM_TOKEN=""
 
