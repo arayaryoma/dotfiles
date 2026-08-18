@@ -55,3 +55,8 @@ My (Claude's) responsibility: immediately **before running** any command in the 
 > 目的: <one sentence on what this command needs 1Password access for>
 
 When running several such commands together, write one sentence of purpose per command.
+
+## Git worktree
+
+- Create worktrees **outside** the repository directory — e.g. `../<repo>.worktrees/<branch>` or a dedicated scratch dir — never in a subdirectory of the checkout.
+- Why: a worktree nested inside the repo gets picked up by the parent checkout's file searches, file watchers, and build/test globs, and is at risk of being staged or wiped by cleanup commands (`git clean -fdx`, `rm -rf`).
