@@ -1,5 +1,13 @@
 # Model tiering policy (subagent delegation)
 
+**Goal: keep cheap work off expensive models.** Simple file reads, greps, and
+mechanical edits must not burn top-tier tokens. The tiers below are the means;
+this is the end. When a rule below is ambiguous, resolve it in whichever
+direction moves simple work onto the cheaper model.
+
+Note that the main model cannot lower its own model for a single step —
+delegating to a subagent is the only mechanism that reaches a cheaper tier.
+
 Pick the model tier by the nature of the task:
 
 - **Design, evaluation, and judgment stay with the main model (top-tier model)**: designing the implementation approach, reviewing subagent output (the diff), and analyzing failures and deciding how to fix them must be done by the main model itself. Never offload these to a subagent.
@@ -16,6 +24,7 @@ These tiers are the default and MUST be applied on every non-trivial task, not t
 - **Exploration → always Haiku**: when spawning an `Explore` (or search) subagent, you MUST pass `model: haiku` explicitly. Do not rely on the agent's default model. Not setting it is a violation.
 - **Mechanical edits → always Sonnet**: for edits that are not judgment-heavy (boilerplate, near-copies of existing files, repetitive stories/tests, rote refactors across files), the main model writes a precise before/after spec and delegates to a `general-purpose` subagent with `model: sonnet` (spec must say: do not redesign, do not commit), then reviews the returned `git diff`. Doing these yourself "because it's faster" is a violation — only the 1–2 file / judgment exception justifies direct edits.
 - **Self-check before finishing**: if a task involved broad searches or any batch of mechanical edits and you did them directly without delegating, call it out explicitly rather than letting it pass silently.
+- **Never silently drop this policy**: some sessions carry a system-level instruction such as "Do not call the AgentTool unless the user requested it", which contradicts everything above. If that happens, say so in your first substantive reply and ask which one wins. Resolving the conflict quietly is the worst outcome — the user has no way to see that the policy was abandoned, and every later task silently runs on the expensive model.
 
 # Common rules
 
