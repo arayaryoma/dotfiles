@@ -33,6 +33,21 @@ These tiers are the default and MUST be applied on every non-trivial task, not t
 - Write comments that explain **why** the code needs to do this (Why), not **what** it is doing (What).
 - Do not write comments stating the obvious — anything already readable from the code itself.
 
+### Documentation comments on exported entities
+
+Entities exported from a module should carry a documentation comment (JSDoc, RustDoc, etc.). The audience is a caller who cannot see the implementation, so the comment must add what the signature cannot.
+
+- Do not restate what the type signature already says — parameter names, parameter types, return types. Type information is already machine-checked; duplicating it in prose only creates something that goes stale.
+- Write an **Example** instead. A short usage snippet conveys the intended calling shape far better than a parameter list.
+- For JavaScript / TypeScript, document **under which conditions an error is thrown**. Throwing is invisible in the signature, so this is the one behavior a caller cannot discover from the types.
+
+### Inline comments
+
+Plain `//` comments are, as a rule, not written. Write one only in these cases:
+
+- A `TODO` comment marking a workaround that needs to be revisited later, along with the reason the workaround is necessary.
+- Processing whose intent is not self-evident from the business logic — where the code is correct but a reader cannot tell *why* this rule exists without the domain context.
+
 ## Language choice for throwaway scripts
 
 - Never use Python for temporary / throwaway (one-shot) scripts.
