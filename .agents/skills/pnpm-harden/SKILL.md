@@ -75,7 +75,7 @@ Apply settings the project's pnpm version supports. Skip any setting whose name 
 | `trustPolicy` | pnpm 10.21+ | See note below — gates by trust evidence, not by version number |
 | `trustPolicyExclude` | pnpm 10.22+ | |
 | `trustPolicyIgnoreAfter` | pnpm 10.27+ | |
-| `verifyDepsBeforeRun` | pnpm 10.x | Default `install` in pnpm 11 |
+| `verifyDepsBeforeRun` | pnpm 10.x | Default `install` in pnpm 11. **Do not enable — see "Don't add these to the baseline"** |
 | `auditConfig.ignoreCves` | pnpm 10.x | **Removed in pnpm 11** — use `ignoreGhsas` |
 | `auditConfig.ignoreGhsas` | pnpm 10.x+, pnpm 11 | Stays |
 | `pnpm audit signatures` (CLI) | pnpm 11.1.0+ | Gate CI recommendations on this exact version |
@@ -107,10 +107,8 @@ strictDepBuilds: true
 # (pnpm 11 default is true; explicit is fine on pnpm 10.)
 blockExoticSubdeps: true
 
-# Verify node_modules matches the lockfile before running scripts.
-# Local default "install" auto-syncs. CI should override to "error" — recommend via env var:
-#   PNPM_CONFIG_VERIFY_DEPS_BEFORE_RUN=error
-verifyDepsBeforeRun: install
+# NOTE: verifyDepsBeforeRun is deliberately NOT in this baseline. See "Don't add these to
+# the baseline" below.
 
 # Surface peer dep resolution issues early.
 strictPeerDependencies: true
@@ -142,6 +140,7 @@ For projects on **pnpm 10.x but not 11**, also include `auditConfig.ignoreCves: 
 - `executionEnv.nodeVersion` / `useNodeVersion` — runtime pinning, not supply-chain. Touch only when no `.nvmrc` / `engines.node` / CI Node version exists.
 - `trustPolicy` — `no-downgrade` rejects installs where the *trust evidence* (registry signatures, provenance) for an incoming version is weaker than what was previously trusted for that package. It is NOT a version-downgrade blocker. Powerful but can surprise teams whose internal registries don't yet emit signatures consistently. Suggest in the report, don't auto-apply unless asked.
 - `packageManagerStrict` / `packageManagerStrictVersion` — version-gated; pnpm 11 renames to `pmOnFail`.
+- `verifyDepsBeforeRun` — **never enable it.** It makes every `pnpm run <script>` check `node_modules` against the lockfile and, on drift, trigger an install. On this machine `pnpm install` reaches for a registry token in 1Password, so the setting turns ordinary script runs into a stream of 1Password approval dialogs. The friction is constant and the protection is marginal — a stale `node_modules` is not the supply-chain threat this skill exists to address. Leave it unset so pnpm's own default applies, and don't set `PNPM_CONFIG_VERIFY_DEPS_BEFORE_RUN` either.
 
 ### 5. Run a verifying install
 
@@ -163,7 +162,7 @@ Print:
 - **New settings from WebFetch** not in this skill's baseline, with what they do and whether you applied them
 - **Existing dangerous settings** flagged (e.g., `dangerouslyAllowAllBuilds: true`, `strictPeerDependencies: false`, audit ignores without comments)
 - **Postinstall packages blocked** by the new install, awaiting `pnpm approve-builds`
-- **Suggested CI additions**: `pnpm install --frozen-lockfile`, `pnpm audit --audit-level moderate`, and on pnpm 11.1.0+ `pnpm audit signatures` (registry signature verification — gate on the exact minor). Also set `PNPM_CONFIG_VERIFY_DEPS_BEFORE_RUN=error` in CI.
+- **Suggested CI additions**: `pnpm install --frozen-lockfile`, `pnpm audit --audit-level moderate`, and on pnpm 11.1.0+ `pnpm audit signatures` (registry signature verification — gate on the exact minor).
 
 Don't commit. This is a behavior change; the user should validate locally and in CI first.
 
@@ -186,6 +185,7 @@ Don't commit. This is a behavior change; the user should validate locally and in
 ## Don'ts
 
 - Don't enable `dangerouslyAllowAllBuilds`. The name is a warning.
+- Don't enable `verifyDepsBeforeRun` (in `pnpm-workspace.yaml` or via `PNPM_CONFIG_VERIFY_DEPS_BEFORE_RUN`) — it makes `pnpm run` trigger installs, which means excessive 1Password approval prompts.
 - Don't silence `strictPeerDependencies` to make a warning go away — fix the peer.
 - Don't bulk-add packages to `allowBuilds` / `onlyBuiltDependencies` without reading their postinstall.
 - Don't write pnpm settings into `.npmrc` on pnpm 11; only auth/registry belong there.
