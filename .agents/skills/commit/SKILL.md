@@ -5,6 +5,23 @@ description: "Generate commit message and commit"
 Execute staging and commit as an explicit, multi-step procedure. Do NOT run
 `git add` until step 2 is done.
 
+## Step 0 — Run this on a low-cost model (MANDATORY)
+Committing is mechanical work: read the diff, classify files, write short
+imperative subjects, stage explicit paths. It must never burn top-tier tokens.
+
+- Claude: run on **Sonnet** or **Haiku**. The main model cannot downgrade
+  itself for a single step, so delegate this whole skill to a subagent
+  (`general-purpose`) with `model: sonnet` (use `model: haiku` for a small,
+  obvious diff). Pass along: follow the commit skill, do not redesign the
+  code, do not push.
+- Codex: run on **Terra** or **Luna** (prefer Luna for a small, obvious diff).
+- If the current session is already on one of those cheap models, skip
+  delegation and just continue with Step 1.
+- Only escalate back to the top-tier model when the diff is genuinely
+  ambiguous — e.g. it is unclear whether a change is a fix or a feature, or
+  splitting it requires understanding the design intent. State why before
+  escalating.
+
 ## Step 1 — Inspect
 - Run `git status` and `git diff` (and `git diff --staged`) to see every change.
 
